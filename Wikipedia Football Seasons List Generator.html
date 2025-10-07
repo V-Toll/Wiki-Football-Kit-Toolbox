@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wikipedia Football Leagues List Generator</title>
+    <style>
+        /* Version: v2.2 | Date: 2025-10-06 */
+
+        /* Color Palette */
+        :root {
+            --primary-color: #0A734C;
+            --secondary-color: #07593B;
+            --background-dark: #060D0B;
+            --background-medium: #07261D;
+            --accent-color: #81A69F;
+            --text-light: #ffffff;
+            --text-dark: #060D0B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: var(--background-medium);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .version {
+            text-align: center;
+            color: var(--accent-color);
+            font-size: 0.9em;
+            margin-bottom: 30px;
+        }
+
+        .input-section {
+            background-color: var(--background-dark);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--background-medium);
+            border: 2px solid var(--primary-color);
+            border-radius: 5px;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        input[type="text"]:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .season-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        button:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+        }
+
+        .progress-section {
+            background-color: var(--background-dark);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .progress-section.active {
+            display: block;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background-color: var(--background-medium);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0%;
+            transition: width 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-weight: bold;
+        }
+
+        .status-text {
+            color: var(--accent-color);
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .debug-log {
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: var(--background-medium);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.75em;
+            color: var(--accent-color);
+        }
+
+        .output-section {
+            background-color: var(--background-dark);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 400px;
+            padding: 15px;
+            background-color: var(--background-medium);
+            border: 2px solid var(--primary-color);
+            border-radius: 5px;
+            color: var(--text-light);
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            resize: vertical;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .copy-btn {
+            background-color: var(--secondary-color);
+        }
+
+        .copy-btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        .info-box {
+            background-color: var(--primary-color);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .info-box h3 {
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+        }
+
+        .cache-info {
+            text-align: center;
+            color: var(--accent-color);
+            font-size: 0.85em;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .season-inputs {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚽ Wikipedia Football Leagues List Generator</h1>
+        <div class="version">Version v2.2 | 06.10.2025</div>
+
+        <div class="info-box">
+            <h3>ℹ️ Anleitung</h3>
+            <ul>
+                <li>Saison eingeben (z.B. 2025 oder 2025/26)</li>
+                <li>Kontinent auswählen</li>
+                <li>Auf "Liste generieren" klicken</li>
+                <li>Warten, bis alle Kategorien verarbeitet wurden</li>
+                <li>Wikipedia-Markup aus dem Textfeld kopieren</li>
+            </ul>
+        </div>
+
+        <div class="input-section">
+            <div class="season-inputs">
+                <div class="input-group">
+                    <label for="seasonSingle">Einzeljahr-Saison (z.B. 2025):</label>
+                    <input type="text" id="seasonSingle" placeholder="2025">
+                </div>
+                <div class="input-group">
+                    <label for="seasonDual">Doppeljahr-Saison (z.B. 2025/26):</label>
+                    <input type="text" id="seasonDual" placeholder="2025/26">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="continent">Kontinent:</label>
+                <select id="continent">
+                    <option value="European">Europa (European)</option>
+                    <option value="African">Afrika (African)</option>
+                    <option value="Asian">Asien (Asian)</option>
+                    <option value="North, Central American and Caribbean">Nord-, Mittelamerika & Karibik</option>
+                    <option value="South American">Südamerika (South American)</option>
+                    <option value="Oceanian">Ozeanien (Oceanian)</option>
+                </select>
+            </div>
+
+            <button id="generateBtn" onclick="generateList()">📋 Liste generieren</button>
+        </div>
+
+        <div class="progress-section" id="progressSection">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill">0%</div>
+            </div>
+            <div class="status-text" id="statusText">Initialisiere...</div>
+            <div class="debug-log" id="debugLog"></div>
+        </div>
+
+        <div class="output-section">
+            <label for="output">Wikipedia-Markup Output:</label>
+            <textarea id="output" placeholder="Die generierte Liste wird hier erscheinen..."></textarea>
+            <div class="button-group">
+                <button class="copy-btn" onclick="copyToClipboard()">📋 In Zwischenablage kopieren</button>
+                <button onclick="clearOutput()">🗑️ Leeren</button>
+            </div>
+            <div class="cache-info" id="cacheInfo">Cache leer</div>
+        </div>
+    </div>
+
+    <script>
+        // Version History
+        // v1.0-2.1: Previous versions with various improvements
+        // v2.2 (2025-10-06): Changed formatting to hierarchical structure with MediaWiki headers
+        //                     Continent as == Header ==, Countries as === Header ===, Leagues as * list
+
+        // Configuration
+        const API_URL = 'https://en.wikipedia.org/w/api.php';
+        const CACHE_DURATION = 3600000; // 1 hour in milliseconds
+
+        // Cache storage
+        let categoryCache = {};
+        let cacheTimestamps = {};
+        let debugMessages = [];
+
+        // Continent name mapping
+        const continentNames = {
+            'European': 'Europa',
+            'African': 'Afrika',
+            'Asian': 'Asien',
+            'North, Central American and Caribbean': 'Nord-, Mittel- und Südamerika sowie Karibik',
+            'South American': 'Südamerika',
+            'Oceanian': 'Ozeanien'
+        };
+
+        // Country name mapping table
+        const countryMapping = {
+            'Albanian': 'Albania',
+            'Andorran': 'Andorra',
+            'Armenian': 'Armenia',
+            'Austrian': 'Austria',
+            'Azerbaijani': 'Azerbaijan',
+            'Belarusian': 'Belarus',
+            'Belgian': 'Belgium',
+            'Bosnia and Herzegovina': 'Bosnia and Herzegovina',
+            'Bulgarian': 'Bulgaria',
+            'Croatian': 'Croatia',
+            'Cypriot': 'Cyprus',
+            'Czech': 'Czech Republic',
+            'Danish': 'Denmark',
+            'English': 'England',
+            'Estonian': 'Estonia',
+            'Faroese': 'Faroe Islands',
+            'Finnish': 'Finland',
+            'French': 'France',
+            'Georgian': 'Georgia',
+            'German': 'Germany',
+            'Gibraltar': 'Gibraltar',
+            'Greek': 'Greece',
+            'Hungarian': 'Hungary',
+            'Icelandic': 'Iceland',
+            'Irish': 'Republic of Ireland',
+            'Israeli': 'Israel',
+            'Italian': 'Italy',
+            'Kazakhstani': 'Kazakhstan',
+            'Kosovan': 'Kosovo',
+            'Latvian': 'Latvia',
+            'Liechtenstein': 'Liechtenstein',
+            'Lithuanian': 'Lithuania',
+            'Luxembourgish': 'Luxembourg',
+            'Macedonian': 'North Macedonia',
+            'Maltese': 'Malta',
+            'Moldovan': 'Moldova',
+            'Montenegrin': 'Montenegro',
+            'Dutch': 'Netherlands',
+            'Northern Irish': 'Northern Ireland',
+            'Norwegian': 'Norway',
+            'Polish': 'Poland',
+            'Portuguese': 'Portugal',
+            'Romanian': 'Romania',
+            'Russian': 'Russia',
+            'San Marinese': 'San Marino',
+            'Scottish': 'Scotland',
+            'Serbian': 'Serbia',
+            'Slovak': 'Slovakia',
+            'Slovenian': 'Slovenia',
+            'Spanish': 'Spain',
+            'Swedish': 'Sweden',
+            'Swiss': 'Switzerland',
+            'Turkish': 'Turkey',
+            'Ukrainian': 'Ukraine',
+            'Welsh': 'Wales',
+            // African countries
+            'Algerian': 'Algeria',
+            'Angolan': 'Angola',
+            'Beninese': 'Benin',
+            'Botswana': 'Botswana',
+            'Burkinabé': 'Burkina Faso',
+            'Burundian': 'Burundi',
+            'Cameroonian': 'Cameroon',
+            'Cape Verdean': 'Cape Verde',
+            'Central African': 'Central African Republic',
+            'Chadian': 'Chad',
+            'Comorian': 'Comoros',
+            'Congolese': 'Congo',
+            'DR Congo': 'DR Congo',
+            'Djiboutian': 'Djibouti',
+            'Egyptian': 'Egypt',
+            'Equatorial Guinean': 'Equatorial Guinea',
+            'Eritrean': 'Eritrea',
+            'Eswatini': 'Eswatini',
+            'Ethiopian': 'Ethiopia',
+            'Gabonese': 'Gabon',
+            'Gambian': 'Gambia',
+            'Ghanaian': 'Ghana',
+            'Guinean': 'Guinea',
+            'Guinea-Bissau': 'Guinea-Bissau',
+            'Ivorian': 'Ivory Coast',
+            'Kenyan': 'Kenya',
+            'Lesotho': 'Lesotho',
+            'Liberian': 'Liberia',
+            'Libyan': 'Libya',
+            'Malagasy': 'Madagascar',
+            'Malawian': 'Malawi',
+            'Malian': 'Mali',
+            'Mauritanian': 'Mauritania',
+            'Mauritian': 'Mauritius',
+            'Moroccan': 'Morocco',
+            'Mozambican': 'Mozambique',
+            'Namibian': 'Namibia',
+            'Nigerien': 'Niger',
+            'Nigerian': 'Nigeria',
+            'Rwandan': 'Rwanda',
+            'São Tomé and Príncipe': 'São Tomé and Príncipe',
+            'Senegalese': 'Senegal',
+            'Seychellois': 'Seychelles',
+            'Sierra Leonean': 'Sierra Leone',
+            'Somali': 'Somalia',
+            'South African': 'South Africa',
+            'South Sudanese': 'South Sudan',
+            'Sudanese': 'Sudan',
+            'Tanzanian': 'Tanzania',
+            'Togolese': 'Togo',
+            'Tunisian': 'Tunisia',
+            'Ugandan': 'Uganda',
+            'Zambian': 'Zambia',
+            'Zimbabwean': 'Zimbabwe',
+            // Asian countries
+            'Afghan': 'Afghanistan',
+            'Bahraini': 'Bahrain',
+            'Bangladeshi': 'Bangladesh',
+            'Bhutanese': 'Bhutan',
+            'Bruneian': 'Brunei',
+            'Cambodian': 'Cambodia',
+            'Chinese': 'China',
+            'Hong Kong': 'Hong Kong',
+            'Indian': 'India',
+            'Indonesian': 'Indonesia',
+            'Iranian': 'Iran',
+            'Iraqi': 'Iraq',
+            'Japanese': 'Japan',
+            'Jordanian': 'Jordan',
+            'Kuwaiti': 'Kuwait',
+            'Kyrgyzstani': 'Kyrgyzstan',
+            'Laotian': 'Laos',
+            'Lebanese': 'Lebanon',
+            'Macanese': 'Macau',
+            'Malaysian': 'Malaysia',
+            'Maldivian': 'Maldives',
+            'Mongolian': 'Mongolia',
+            'Myanmar': 'Myanmar',
+            'Nepalese': 'Nepal',
+            'North Korean': 'North Korea',
+            'Omani': 'Oman',
+            'Pakistani': 'Pakistan',
+            'Palestinian': 'Palestine',
+            'Philippine': 'Philippines',
+            'Qatari': 'Qatar',
+            'Saudi': 'Saudi Arabia',
+            'Singaporean': 'Singapore',
+            'South Korean': 'South Korea',
+            'Sri Lankan': 'Sri Lanka',
+            'Syrian': 'Syria',
+            'Taiwanese': 'Taiwan',
+            'Tajikistani': 'Tajikistan',
+            'Thai': 'Thailand',
+            'Timorese': 'Timor-Leste',
+            'Turkmen': 'Turkmenistan',
+            'Emirati': 'United Arab Emirates',
+            'UAE': 'United Arab Emirates',
+            'Uzbekistani': 'Uzbekistan',
+            'Vietnamese': 'Vietnam',
+            'Yemeni': 'Yemen',
+            // American countries
+            'Argentine': 'Argentina',
+            'Argentinian': 'Argentina',
+            'Aruban': 'Aruba',
+            'Bahamian': 'Bahamas',
+            'Barbadian': 'Barbados',
+            'Belizean': 'Belize',
+            'Bermudian': 'Bermuda',
+            'Bolivian': 'Bolivia',
+            'Brazilian': 'Brazil',
+            'Canadian': 'Canada',
+            'Caymanian': 'Cayman Islands',
+            'Chilean': 'Chile',
+            'Colombian': 'Colombia',
+            'Costa Rican': 'Costa Rica',
+            'Cuban': 'Cuba',
+            'Curaçao': 'Curaçao',
+            'Dominican': 'Dominican Republic',
+            'Ecuadorian': 'Ecuador',
+            'Salvadoran': 'El Salvador',
+            'Grenadian': 'Grenada',
+            'Guatemalan': 'Guatemala',
+            'Guyanese': 'Guyana',
+            'Haitian': 'Haiti',
+            'Honduran': 'Honduras',
+            'Jamaican': 'Jamaica',
+            'Mexican': 'Mexico',
+            'Nicaraguan': 'Nicaragua',
+            'Panamanian': 'Panama',
+            'Paraguayan': 'Paraguay',
+            'Peruvian': 'Peru',
+            'Puerto Rican': 'Puerto Rico',
+            'Surinamese': 'Suriname',
+            'Trinidadian and Tobagonian': 'Trinidad and Tobago',
+            'American': 'United States',
+            'US': 'United States',
+            'Uruguayan': 'Uruguay',
+            'Venezuelan': 'Venezuela',
+            // Oceanian countries
+            'Australian': 'Australia',
+            'New Zealand': 'New Zealand',
+            'Fijian': 'Fiji',
+            'Papua New Guinean': 'Papua New Guinea',
+            'Solomon Islands': 'Solomon Islands',
+            'Vanuatuan': 'Vanuatu',
+            'Samoan': 'Samoa',
+            'Tahitian': 'Tahiti',
+            'Tongan': 'Tonga',
+            'Cook Islands': 'Cook Islands'
+        };
+
+        // Valid country names (for validation)
+        const validCountries = new Set(Object.values(countryMapping));
+
+        // Auto-fill season fields when one is filled
+        document.getElementById('seasonSingle').addEventListener('input', function(e) {
+            const value = e.target.value;
+            if (value && !value.includes('/')) {
+                const year = parseInt(value);
+                if (!isNaN(year)) {
+                    const nextYear = (year + 1).toString().slice(-2);
+                    document.getElementById('seasonDual').value = `${year}/${nextYear}`;
+                }
+            }
+        });
+
+        document.getElementById('seasonDual').addEventListener('input', function(e) {
+            const value = e.target.value;
+            if (value && value.includes('/')) {
+                const year = value.split('/')[0];
+                document.getElementById('seasonSingle').value = year;
+            }
+        });
+
+        // Debug logging
+        function addDebugLog(message) {
+            debugMessages.push(`[${new Date().toLocaleTimeString()}] ${message}`);
+            const debugLog = document.getElementById('debugLog');
+            debugLog.innerHTML = debugMessages.slice(-30).join('<br>');
+            debugLog.scrollTop = debugLog.scrollHeight;
+        }
+
+        // Main generation function
+        async function generateList() {
+            const seasonSingle = document.getElementById('seasonSingle').value.trim();
+            const seasonDual = document.getElementById('seasonDual').value.trim();
+            const continent = document.getElementById('continent').value;
+
+            if (!seasonSingle || !seasonDual) {
+                alert('Bitte beide Saisonfelder ausfüllen!');
+                return;
+            }
+
+            // Clear debug log
+            debugMessages = [];
+
+            // Disable button and show progress
+            document.getElementById('generateBtn').disabled = true;
+            document.getElementById('progressSection').classList.add('active');
+            updateProgress(0, 'Starte Abfrage...');
+
+            try {
+                const leagues = await fetchAllLeagues(seasonSingle, seasonDual, continent);
+                const formattedOutput = formatOutput(leagues, seasonDual, continent);
+                document.getElementById('output').value = formattedOutput;
+                updateProgress(100, 'Fertig!');
+                updateCacheInfo();
+                addDebugLog('✓ Liste erfolgreich generiert');
+            } catch (error) {
+                console.error('Error:', error);
+                addDebugLog('✗ Fehler: ' + error.message);
+                alert('Fehler beim Generieren der Liste: ' + error.message);
+                updateProgress(0, 'Fehler aufgetreten');
+            } finally {
+                document.getElementById('generateBtn').disabled = false;
+            }
+        }
+
+        // Check if category is a meta-category (not a real country)
+        function isMetaCategory(categoryTitle) {
+            const metaPatterns = [
+                /in European association football leagues$/i,
+                /in European.*?(?:men's|women's|second-tier|third-tier|top-tier).*?association football leagues$/i,
+                /in African association football leagues$/i,
+                /in African.*?(?:men's|women's|second-tier|third-tier|top-tier).*?association football leagues$/i,
+                /in Asian association football leagues$/i,
+                /in Asian.*?(?:men's|women's|second-tier|third-tier|top-tier).*?association football leagues$/i,
+                /in South American association football leagues$/i,
+                /in South American.*?(?:men's|women's|second-tier|third-tier|top-tier).*?association football leagues$/i,
+                /in Oceanian association football leagues$/i,
+                /in Oceanian.*?(?:men's|women's|second-tier|third-tier|top-tier).*?association football leagues$/i,
+                /in North.*?American.*?association football leagues$/i,
+                /in association football$/i,
+                /in men's association football$/i,
+                /in women's association football$/i,
+                /domestic association football/i,
+                /football by country$/i,
+                /by continent$/i,
+                /by teams$/i,
+                /football clubs.*?season$/i
+            ];
+
+            return metaPatterns.some(pattern => pattern.test(categoryTitle));
+        }
+
+        // Check if page is an international tournament
+        function isInternationalTournament(pageTitle) {
+            const internationalPatterns = [
+                /FIFA World Cup/i,
+                /UEFA/i,
+                /Champions League/i,
+                /Europa League/i,
+                /Conference League/i,
+                /Euro\s*\d{4}/i,
+                /European Championship/i,
+                /Copa America/i,
+                /CONMEBOL/i,
+                /CONCACAF/i,
+                /CAF/i,
+                /AFC/i,
+                /OFC/i,
+                /qualification/i,
+                /Intercontinental/i,
+                /Super Cup/i,
+                /Supercup/i,
+                /Community Shield/i,
+                /Finalissima/i
+            ];
+
+            return internationalPatterns.some(pattern => pattern.test(pageTitle));
+        }
+
+        // Process all categories recursively and extract pages from EVERY category
+        async function processAllCategoriesAndPages(categoryTitle, countryData, allLeagues, internationalTournaments, processedCategories = new Set()) {
+            // Avoid infinite loops
+            if (processedCategories.has(categoryTitle)) {
+                return;
+            }
+            processedCategories.add(categoryTitle);
+
+            // Skip meta-categories (including "by teams")
+            if (isMetaCategory(categoryTitle)) {
+                return;
+            }
+
+            // Get pages from THIS category directly
+            const pages = await getCategoryPages(categoryTitle);
+            let addedCount = 0;
+
+            for (const page of pages) {
+                if (isLeaguePage(page.title)) {
+                    // Check if it's an international tournament
+                    if (isInternationalTournament(page.title)) {
+                        internationalTournaments.push({
+                            title: page.title,
+                            category: categoryTitle
+                        });
+                    } else {
+                        if (!allLeagues[countryData.country]) {
+                            allLeagues[countryData.country] = [];
+                        }
+                        allLeagues[countryData.country].push({
+                            title: page.title,
+                            category: categoryTitle
+                        });
+                        addedCount++;
+                    }
+                }
+            }
+
+            if (addedCount > 0) {
+                addDebugLog(`    📄 ${addedCount} Ligen aus "${categoryTitle.substring(categoryTitle.lastIndexOf(':') + 1)}"`);
+            }
+
+            // Also get all subcategories and process them recursively
+            const subcats = await getCategoryMembers(categoryTitle, 'subcat');
+            for (const subcat of subcats) {
+                await processAllCategoriesAndPages(subcat.title, countryData, allLeagues, internationalTournaments, processedCategories);
+            }
+        }
+
+        // Fetch all leagues for given seasons and continent
+        async function fetchAllLeagues(seasonSingle, seasonDual, continent) {
+            const allLeagues = {};
+            const internationalTournaments = [];
+
+            // Convert dual season format: 2025/26 -> 2025–26 (en-dash, not hyphen!)
+            const seasonDualWithEndash = seasonDual.replace('/', '–');
+
+            addDebugLog(`Suche Ligen für: ${seasonSingle} und ${seasonDualWithEndash}`);
+
+            // Strategy 1: Use "by country" categories (most reliable)
+            const byCountryCategories = [
+                `Category:${seasonSingle} in ${continent} football by country`,
+                `Category:${seasonDualWithEndash} in ${continent} football by country`
+            ];
+
+            // Strategy 2: Also search direct continent categories to find country subcategories
+            const directContinentCategories = [
+                `Category:${seasonSingle} in ${continent} football`,
+                `Category:${seasonDualWithEndash} in ${continent} football`
+            ];
+
+            const allCategoriesToSearch = [...byCountryCategories, ...directContinentCategories];
+
+            addDebugLog(`Durchsuche ${allCategoriesToSearch.length} Hauptkategorien`);
+            updateProgress(5, 'Lade Kategorien...');
+
+            const processedCountries = new Set();
+
+            // Process all main categories
+            for (let i = 0; i < allCategoriesToSearch.length; i++) {
+                const category = allCategoriesToSearch[i];
+                addDebugLog(`Verarbeite: ${category}`);
+                updateProgress(5 + (i * 85 / allCategoriesToSearch.length), `Lade ${category.split(':')[1]}...`);
+
+                try {
+                    // Get all subcategories
+                    const subcats = await getCategoryMembers(category, 'subcat');
+                    addDebugLog(`→ ${subcats.length} Unterkategorien gefunden`);
+
+                    // Process each subcategory
+                    for (let j = 0; j < subcats.length; j++) {
+                        const subcat = subcats[j];
+                        const progress = 5 + (i * 85 / allCategoriesToSearch.length) + (j * 85 / allCategoriesToSearch.length / Math.max(subcats.length, 1));
+                        updateProgress(progress, `Verarbeite ${j + 1}/${subcats.length}...`);
+
+                        // Extract country name from this category
+                        const countryData = extractCountryFromCategory(subcat.title);
+
+                        // Skip if country is not valid
+                        if (!countryData || !validCountries.has(countryData.country)) {
+                            continue;
+                        }
+
+                        // Skip if already processed (avoid duplicates)
+                        const countryKey = `${countryData.country}_${subcat.title}`;
+                        if (processedCountries.has(countryKey)) {
+                            continue;
+                        }
+                        processedCountries.add(countryKey);
+
+                        addDebugLog(`  → ${countryData.country}`);
+
+                        // Process this country category and ALL its subcategories recursively
+                        await processAllCategoriesAndPages(subcat.title, countryData, allLeagues, internationalTournaments);
+                    }
+                } catch (error) {
+                    addDebugLog(`✗ Fehler bei ${category}: ${error.message}`);
+                    console.warn(`Error processing ${category}:`, error);
+                }
+            }
+
+            // Add international tournaments to special category
+            if (internationalTournaments.length > 0) {
+                allLeagues['Internationale Turniere'] = internationalTournaments;
+                addDebugLog(`🌍 ${internationalTournaments.length} internationale Turniere gefunden`);
+            }
+
+            updateProgress(95, 'Sortiere Ergebnisse...');
+            addDebugLog(`Gefundene Länder: ${Object.keys(allLeagues).filter(c => c !== 'Internationale Turniere').join(', ')}`);
+
+            // Remove duplicates and sort
+            let totalLeagues = 0;
+            for (const country in allLeagues) {
+                allLeagues[country] = Array.from(
+                    new Map(allLeagues[country].map(item => [item.title, item])).values()
+                ).sort((a, b) => a.title.localeCompare(b.title));
+                totalLeagues += allLeagues[country].length;
+            }
+
+            addDebugLog(`Insgesamt ${totalLeagues} Ligen/Turniere gefunden`);
+
+            return allLeagues;
+        }
+
+        // Get category members (pages or subcategories)
+        async function getCategoryMembers(categoryTitle, type = 'page') {
+            const cacheKey = `members_${type}_${categoryTitle}`;
+
+            // Check cache
+            if (isCacheValid(cacheKey)) {
+                return categoryCache[cacheKey];
+            }
+
+            const members = [];
+            let cmcontinue = null;
+            let attempts = 0;
+            const maxAttempts = 10;
+
+            do {
+                attempts++;
+                if (attempts > maxAttempts) {
+                    addDebugLog(`⚠ Zu viele Anfragen für: ${categoryTitle}`);
+                    break;
+                }
+
+                const params = new URLSearchParams({
+                    action: 'query',
+                    list: 'categorymembers',
+                    cmtitle: categoryTitle,
+                    cmtype: type,
+                    cmlimit: '500',
+                    format: 'json',
+                    origin: '*'
+                });
+
+                if (cmcontinue) {
+                    params.append('cmcontinue', cmcontinue);
+                }
+
+                try {
+                    const response = await fetch(`${API_URL}?${params}`);
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+
+                    const data = await response.json();
+
+                    if (data.error) {
+                        throw new Error(data.error.info || 'API Error');
+                    }
+
+                    if (data.query && data.query.categorymembers) {
+                        members.push(...data.query.categorymembers);
+                    }
+
+                    cmcontinue = data.continue ? data.continue.cmcontinue : null;
+                } catch (error) {
+                    addDebugLog(`✗ API Fehler: ${error.message}`);
+                    console.error('API Error:', error);
+                    break;
+                }
+
+                // Small delay to avoid rate limiting
+                await sleep(100);
+
+            } while (cmcontinue);
+
+            // Cache the result
+            categoryCache[cacheKey] = members;
+            cacheTimestamps[cacheKey] = Date.now();
+
+            return members;
+        }
+
+        // Get pages from category
+        async function getCategoryPages(categoryTitle) {
+            return await getCategoryMembers(categoryTitle, 'page');
+        }
+
+        // Extract country name from category title
+        function extractCountryFromCategory(categoryTitle) {
+            const patterns = [
+                // Match: "Category:2025 in German football" or "Category:2025 in French football"
+                /Category:(?:\d{4}|\d{4}[–-]\d{2})\s+in\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s+football/i,
+                // Match: "Category:2025–26 in German football leagues"
+                /Category:(?:\d{4}|\d{4}[–-]\d{2})\s+in\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s+(?:men's|women's)?\s*football/i
+            ];
+
+            for (const pattern of patterns) {
+                const match = categoryTitle.match(pattern);
+                if (match) {
+                    let countryAdj = match[1].trim();
+
+                    // Remove "men's" or "women's" if accidentally captured
+                    countryAdj = countryAdj.replace(/(?:men's|women's)\s*/gi, '').trim();
+
+                    // Look up in mapping table
+                    const country = countryMapping[countryAdj] || countryAdj;
+
+                    return {
+                        country: country,
+                        adjective: countryAdj
+                    };
+                }
+            }
+
+            return null;
+        }
+
+        // Check if page is a league page
+        function isLeaguePage(title) {
+            // Filter out certain non-league pages
+            const excludePatterns = [
+                /^Category:/i,
+                /^Template:/i,
+                /^List of/i,
+                /^File:/i,
+                /^User:/i,
+                /\(disambiguation\)/i,
+                /season$/i
+            ];
+
+            for (const pattern of excludePatterns) {
+                if (pattern.test(title)) {
+                    return false;
+                }
+            }
+
+            // Include pages that look like league pages
+            const includePatterns = [
+                /\d{4}(?:[–-]\d{2})?\s+/  // Contains year (with en-dash or hyphen)
+            ];
+
+            return includePatterns.some(pattern => pattern.test(title));
+        }
+
+        // Format output as Wikipedia markup with hierarchical structure
+        function formatOutput(leagues, seasonDual, continent) {
+            let output = '';
+
+            // Add continent header (== Header ==)
+            const continentName = continentNames[continent] || continent;
+            output += `== ${continentName} ==\n\n`;
+
+            // Sort countries, but put "Internationale Turniere" at the end
+            const sortedCountries = Object.keys(leagues).sort((a, b) => {
+                if (a === 'Internationale Turniere') return 1;
+                if (b === 'Internationale Turniere') return -1;
+                return a.localeCompare(b);
+            });
+
+            for (const country of sortedCountries) {
+                const leagueList = leagues[country];
+                if (leagueList.length === 0) continue;
+
+                // Special handling for international tournaments
+                if (country === 'Internationale Turniere') {
+                    output += `=== Internationale Turniere ===\n`;
+
+                    leagueList.forEach(league => {
+                        const leagueName = extractLeagueName(league.title);
+                        const pageLink = league.title.replace(/ /g, '_');
+                        output += `* [[:en:${pageLink}|${leagueName}]]\n`;
+                    });
+                } else {
+                    // Add country header (=== Header ===)
+                    output += `=== ${country} ===\n`;
+
+                    // Add each league
+                    leagueList.forEach(league => {
+                        const leagueName = extractLeagueName(league.title);
+                        const pageLink = league.title.replace(/ /g, '_');
+                        output += `* [[:en:${pageLink}|${leagueName}]]\n`;
+                    });
+                }
+
+                output += '\n';
+            }
+
+            return output;
+        }
+
+        // Extract clean league name from page title
+        function extractLeagueName(pageTitle) {
+            // Remove year prefix (e.g., "2025–26 Bundesliga" -> "Bundesliga")
+            let name = pageTitle.replace(/^\d{4}(?:[–-]\d{2})?\s+/, '');
+
+            return name;
+        }
+
+        // Cache helper functions
+        function isCacheValid(key) {
+            if (!categoryCache[key] || !cacheTimestamps[key]) {
+                return false;
+            }
+
+            const age = Date.now() - cacheTimestamps[key];
+            return age < CACHE_DURATION;
+        }
+
+        function updateCacheInfo() {
+            const cacheCount = Object.keys(categoryCache).length;
+            const cacheInfo = document.getElementById('cacheInfo');
+            if (cacheCount > 0) {
+                cacheInfo.textContent = `Cache: ${cacheCount} Einträge gespeichert`;
+            } else {
+                cacheInfo.textContent = 'Cache leer';
+            }
+        }
+
+        // UI helper functions
+        function updateProgress(percent, text) {
+            const fill = document.getElementById('progressFill');
+            const status = document.getElementById('statusText');
+            fill.style.width = percent + '%';
+            fill.textContent = Math.round(percent) + '%';
+            status.textContent = text;
+        }
+
+        function copyToClipboard() {
+            const output = document.getElementById('output');
+            output.select();
+            document.execCommand('copy');
+
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = '✅ Kopiert!';
+            setTimeout(() => {
+                btn.textContent = originalText;
+            }, 2000);
+        }
+
+        function clearOutput() {
+            document.getElementById('output').value = '';
+            document.getElementById('progressSection').classList.remove('active');
+            updateProgress(0, '');
+            debugMessages = [];
+            document.getElementById('debugLog').innerHTML = '';
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // Initialize
+        updateCacheInfo();
+
+        // Set current season as default
+        const currentYear = new Date().getFullYear();
+        document.getElementById('seasonSingle').value = currentYear;
+        const nextYear = (currentYear + 1).toString().slice(-2);
+        document.getElementById('seasonDual').value = `${currentYear}/${nextYear}`;
+    </script>
+</body>
+</html>
