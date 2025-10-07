@@ -1,0 +1,2535 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <!-- Favicon v3.4.0 - Zentriertes Trikot mit Checkmark -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPCEtLSBIaW50ZXJncnVuZDogRnXDn2JhbGxmZWxkLUdyw7xuIC0tPgogIDxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iIzBBNzM0QyIgcng9IjQiLz4KCiAgPCEtLSBUcmlrb3QtRm9ybSAoemVudHJpZXJ0KSAtLT4KICA8IS0tIFNjaHVsdGVybiB1bmQgS8O2cnBlciAtLT4KICA8cGF0aCBkPSJNIDEwIDEwIEwgMTEgOCBMIDE0IDkgTCAxNiA3IEwgMTggOSBMIDIxIDggTCAyMiAxMCBMIDIyIDIyIFEgMjIgMjUgMTkgMjUgTCAxMyAyNSBRIDEwIDI1IDEwIDIyIFoiIAogICAgICAgIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzBBNzM0QyIgc3Ryb2tlLXdpZHRoPSIwLjUiLz4KCiAgPCEtLSBWLUF1c3NjaG5pdHQgLS0+CiAgPHBhdGggZD0iTSAxNCA5IEwgMTYgMTIgTCAxOCA5IiBmaWxsPSJub25lIiBzdHJva2U9IiMwQTczNEMiIHN0cm9rZS13aWR0aD0iMS4yIi8+CgogIDwhLS0gTGlua2VyIMOEcm1lbCAtLT4KICA8cGF0aCBkPSJNIDEwIDEwIEwgOCAxMSBMIDggMTUgTCAxMCAxNCBaIiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMwQTczNEMiIHN0cm9rZS13aWR0aD0iMC41Ii8+CgogIDwhLS0gUmVjaHRlciDDhHJtZWwgLS0+CiAgPHBhdGggZD0iTSAyMiAxMCBMIDI0IDExIEwgMjQgMTUgTCAyMiAxNCBaIiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMwQTczNEMiIHN0cm9rZS13aWR0aD0iMC41Ii8+CgogIDwhLS0gQ2hlY2ttYXJrIChmw7xyICJBYmhha2VuIi1GdW5rdGlvbmFsaXTDpHQpIC0tPgogIDxwYXRoIGQ9Ik0gMTIgMTcgTCAxNC41IDIwIEwgMjAgMTQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzRDQUY1MCIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4=">
+  <!-- Fallback für ältere Browser -->
+  <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABjElEQVR4nO2WS0sDMRSFv7pQcOPChQvBhW5c+QNc+QdcuRFXLlz5A1z5A1y5cOVCcOHChQsXLlxYEBcuXLgQXLhwoQsXLlxYEBe6cGGh0JqZNmPaTJrJTJKZ5MDh3tx7kpub3JsA/oVmYBxYBKrACXAMrAKzwCDQWu8CzcAEsA3kgSfgBbgHdoAZoK9eBVqAaWAP+AC+gUfgAFgGxoC2ehNoByaBA+AL+AHugV1gHuiuJ4EOYArYBz6BV+AW2AImga56EegCZoAt4B14A26ANWAC6KwHgR5gGrgCXoAbYB2YAHprcXIN6AXmgEvgGbgC1oFhoCcQvxvoA+aAS+AJuKzU9wbij/p+zwG1H9u/kAz5PgPDgfjRwN/dBvQ7l4V6HgxsU8CDcz19zhXU8wSO09N/GjaqyFfP4+FO/BRwXkW+ep6A5/Tq7VaRr54n4Dm9evtV5KvnCXhOr97WqshXzxPwnF691SryVc3zBJqAQWAEGHbu1btxvn8Dfh1/AV/0hY6if5idAAAAAElFTkSuQmCC">
+  <title>Neue Commons-Trikots</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --pitch-dark: #07261D;
+      --pitch-shadow: #060D0B;
+      --pitch-main: #07593B;
+      --pitch-bright: #0A734C;
+      --pitch-highlight: #81A69F;
+      --line-white: #ffffff;
+      --text-primary: #ffffff;
+      --text-secondary: #81A69F;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    
+    /* Header */
+    header {
+      padding: 15px 20px;
+      background: linear-gradient(135deg, var(--pitch-shadow), var(--pitch-dark));
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 3px solid var(--line-white);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .header-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .primary-btn, .secondary-btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: 2px solid var(--line-white);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .primary-btn {
+      background: linear-gradient(135deg, var(--pitch-bright), var(--pitch-highlight));
+      color: var(--pitch-shadow);
+      box-shadow: 0 2px 10px rgba(10,115,76,0.4);
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(10,115,76,0.6);
+    }
+
+    .secondary-btn {
+      background: var(--pitch-dark);
+      color: var(--line-white);
+    }
+
+    .secondary-btn:hover {
+      background: var(--pitch-main);
+      transform: translateY(-2px);
+    }
+
+    .filter-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      padding: 0;
+    }
+
+    .filter-panel.collapsed {
+      max-height: 0;
+      padding: 0;
+    }
+
+    .filter-panel:not(.collapsed) {
+      max-height: 700px;
+      padding: 15px 0;
+    }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .filter-grid label {
+      display: block;
+      font-size: 11px;
+      color: var(--pitch-highlight);
+      margin-bottom: 5px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .filter-grid input[type="date"],
+    .filter-grid input[type="number"],
+    .filter-grid select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 2px solid var(--line-white);
+      background: var(--pitch-dark);
+      color: var(--text-primary);
+      font-size: 14px;
+    }
+
+    .filter-grid input[type="checkbox"] {
+      width: auto;
+      margin-right: 8px;
+    }
+
+    .auto-refresh-section {
+      background: rgba(10,115,76,0.2);
+      border: 2px solid var(--pitch-bright);
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 15px;
+    }
+
+    .auto-refresh-section h3 {
+      margin: 0 0 10px;
+      font-size: 13px;
+      color: var(--pitch-highlight);
+      font-weight: 700;
+    }
+
+    .refresh-controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .toggle-btn {
+      padding: 10px 16px;
+      border-radius: 6px;
+      border: 2px solid var(--line-white);
+      background: var(--pitch-dark);
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+    }
+
+    .toggle-btn.active {
+      background: linear-gradient(135deg, #ff4444, #cc0000);
+      color: white;
+    }
+
+    #countdown {
+      text-align: center;
+      font-size: 11px;
+      color: var(--pitch-highlight);
+      padding: 8px;
+      background: rgba(0,0,0,0.3);
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    #notice {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--pitch-highlight);
+    }
+
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, var(--pitch-shadow) 0%, var(--pitch-dark) 25%, var(--pitch-main) 50%, var(--pitch-dark) 75%, var(--pitch-shadow) 100%);
+      background-size: 400% 400%;
+      animation: pitchGlow 20s ease infinite;
+      color: var(--text-primary);
+      min-height: 100vh;
+      position: relative;
+    }
+
+    @keyframes pitchGlow {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 50px,
+        rgba(10, 115, 76, 0.1) 50px,
+        rgba(10, 115, 76, 0.1) 100px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header {
+      padding: 20px;
+      background: linear-gradient(135deg, var(--pitch-shadow) 0%, var(--pitch-dark) 100%);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 3px solid var(--line-white);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 -2px 10px rgba(129, 166, 159, 0.2);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    header.collapsed {
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    header.collapsed h1 {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    header.collapsed .title-icon {
+      font-size: 20px;
+    }
+
+    header.collapsed .title-badge {
+      font-size: 9px;
+      padding: 2px 6px;
+    }
+
+    header.collapsed 
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      align-items: end;
+      position: relative;
+      z-index: 1;
+    }
+
+    .controls > div:has(#countdown) {
+      grid-column: 1 / -1;
+    }
+
+    header.collapsed::after {
+      content: '▼ Klicken zum Erweitern';
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 11px;
+      color: var(--pitch-highlight);
+      font-weight: 600;
+      animation: pulse 2s ease infinite;
+    }
+
+    h1 {
+      margin: 0 0 16px 0;
+      font-size: 28px;
+      color: var(--line-white);
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+    }
+
+    .title-icon {
+      font-size: 32px;
+      animation: spin 3s linear infinite;
+      filter: drop-shadow(0 0 10px rgba(129, 166, 159, 0.6));
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .title-main {
+      background: linear-gradient(135deg, var(--line-white) 0%, var(--pitch-highlight) 50%, var(--line-white) 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 3s ease infinite;
+      text-shadow: none;
+      font-weight: 900;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .title-badge {
+      background: linear-gradient(135deg, var(--pitch-bright) 0%, var(--pitch-highlight) 100%);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px rgba(255, 68, 68, 0.4);
+      animation: pulse 2s ease infinite;
+      border: 2px solid var(--line-white);
+    }
+
+    @keyframes pulse {
+      0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 2px 8px rgba(255, 68, 68, 0.4);
+      }
+      50% { 
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(255, 68, 68, 0.6);
+      }
+    }
+
+    
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      align-items: end;
+      position: relative;
+      z-index: 1;
+    }
+
+    .controls > div:has(#countdown) {
+      grid-column: 1 / -1;
+    }
+
+    .controls label {
+      display: block;
+      font-size: 12px;
+      color: var(--pitch-highlight);
+      margin-bottom: 6px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    input, select, button {
+      padding: 12px 14px;
+      border-radius: 6px;
+      border: 2px solid var(--line-white);
+      background: var(--pitch-dark);
+      color: var(--text-primary);
+      font-size: 14px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--pitch-highlight);
+      box-shadow: 0 0 0 3px rgba(129, 166, 159, 0.3), inset 0 2px 8px rgba(0, 0, 0, 0.3);
+      transform: translateY(-1px);
+    }
+
+    input:hover, select:hover {
+      border-color: var(--pitch-bright);
+    }
+
+    button.primary {
+      background: linear-gradient(135deg, var(--pitch-bright) 0%, var(--pitch-highlight) 100%);
+      border: 2px solid var(--line-white);
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--pitch-shadow);
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 15px rgba(10, 115, 76, 0.4);
+    }
+
+    button.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(10, 115, 76, 0.6);
+      background: linear-gradient(135deg, var(--pitch-highlight) 0%, var(--pitch-bright) 100%);
+    }
+
+    button.primary:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 10px rgba(10, 115, 76, 0.4);
+    }
+
+    .wrap {
+      padding: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .grid {
+      display: grid;
+      gap: 28px;
+    }
+
+    .team-group {
+      border: 3px solid var(--line-white);
+      border-radius: 12px;
+      background: linear-gradient(145deg, var(--pitch-shadow) 0%, var(--pitch-dark) 50%, var(--pitch-main) 100%);
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .team-group::before,
+    .team-group::after {
+      content: '';
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: var(--line-white);
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .team-group::before {
+      top: -6px;
+      left: -6px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .team-group::after {
+      top: -6px;
+      right: -6px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .team-group:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      border-color: var(--pitch-highlight);
+    }
+
+    .team-header {
+      padding: 20px 26px;
+      background: linear-gradient(135deg, var(--pitch-bright) 0%, var(--pitch-main) 100%);
+      border-bottom: 3px solid var(--line-white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 30px,
+        rgba(129, 166, 159, 0.1) 30px,
+        rgba(129, 166, 159, 0.1) 60px
+      );
+      pointer-events: none;
+    }
+
+    .team-title {
+      font-weight: 900;
+      font-size: 24px;
+      margin: 0;
+      color: var(--line-white);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(129, 166, 159, 0.3);
+      position: relative;
+      z-index: 1;
+    }
+
+    .team-subtitle {
+      font-size: 14px;
+      color: var(--pitch-highlight);
+      margin: 10px 0 0 0;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+
+    .team-kits {
+      padding: 24px 26px;
+      display: grid;
+      gap: 20px;
+      background: linear-gradient(to bottom, var(--pitch-dark), var(--pitch-shadow));
+    }
+
+    .kitset-card {
+      border: 2px solid var(--line-white);
+      border-radius: 10px;
+      background: var(--pitch-main);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .kitset-card:hover {
+      border-color: var(--pitch-highlight);
+      box-shadow: 0 6px 20px rgba(10, 115, 76, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .kitset-header {
+      padding: 14px 18px;
+      background: linear-gradient(90deg, var(--pitch-bright) 0%, var(--pitch-main) 100%);
+      border-bottom: 2px solid var(--line-white);
+    }
+
+    .kitset-title {
+      font-weight: 700;
+      font-size: 17px;
+      margin: 0;
+      color: var(--line-white);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .kitset-subtitle {
+      font-size: 12px;
+      color: var(--pitch-highlight);
+      margin: 5px 0 0 0;
+      font-weight: 500;
+    }
+
+    .kitset-parts {
+      padding: 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      background: var(--pitch-dark);
+    }
+
+    
+
+    .file-card {
+      border: 2px solid var(--line-white);
+      border-radius: 8px;
+      background: var(--pitch-shadow);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      cursor: pointer !important;
+    }
+
+    .file-card:hover {
+      border-color: var(--pitch-highlight);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(10, 115, 76, 0.3);
+    }
+
+    .file-card:active {
+      transform: translateY(-1px) scale(1.01);
+    }
+
+    .file-card:hover {
+      border-color: var(--pitch-highlight);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(10, 115, 76, 0.3);
+    }
+
+    .file-header {
+      padding: 10px 12px;
+      background: var(--pitch-bright);
+      border-bottom: 2px solid var(--line-white);
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .file-header a {
+      color: var(--line-white);
+      text-decoration: none;
+      transition: color 0.2s ease;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .file-header a:hover {
+      color: var(--pitch-highlight);
+    }
+
+    .file-thumb {
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--pitch-main);
+      border: 2px dashed rgba(255, 255, 255, 0.3);
+      margin: 10px;
+      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .file-thumb::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(129, 166, 159, 0.05) 10px,
+        rgba(129, 166, 159, 0.05) 20px
+      );
+    }
+
+    .file-thumb img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      position: relative;
+      z-index: 1;
+    }
+
+    .file-meta {
+      padding: 8px 12px;
+      font-size: 11px;
+      color: var(--pitch-highlight);
+      border-top: 2px solid var(--line-white);
+      text-align: center;
+      background: var(--pitch-dark);
+      font-weight: 600;
+    }
+
+    .single-grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .card {
+      border: 3px solid var(--line-white);
+      border-radius: 12px;
+      background: linear-gradient(145deg, var(--pitch-shadow), var(--pitch-dark));
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    .card:hover {
+      border-color: var(--pitch-highlight);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(10, 115, 76, 0.3);
+    }
+
+    .card-header {
+      padding: 14px 18px;
+      background: var(--pitch-bright);
+      border-bottom: 2px solid var(--line-white);
+    }
+
+    .card-title {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--line-white);
+    }
+
+    .card-title a {
+      color: var(--line-white);
+      text-decoration: none;
+    }
+
+    .card-title a:hover {
+      color: var(--pitch-highlight);
+    }
+
+    .thumbs {
+      padding: 18px;
+      display: flex;
+      justify-content: center;
+      background: var(--pitch-main);
+    }
+
+    .thumb {
+      width: 100%;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--pitch-dark);
+      border: 2px dashed var(--line-white);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .thumb img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .meta {
+      padding: 14px 18px;
+      background: var(--pitch-dark);
+      border-top: 2px solid var(--line-white);
+      font-size: 12px;
+      color: var(--pitch-highlight);
+      font-weight: 600;
+    }
+
+    .loading {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(7, 38, 29, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+    }
+
+    .loading .box {
+      background: var(--pitch-dark);
+      border: 3px solid var(--line-white);
+      padding: 24px 32px;
+      border-radius: 16px;
+      font-size: 18px;
+      color: var(--pitch-highlight);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+      font-weight: 700;
+    }
+
+    #notice {
+      margin: 12px 0 0 0;
+      font-size: 13px;
+      color: var(--pitch-highlight);
+      font-weight: 500;
+    }
+
+    #notice a {
+      color: var(--line-white);
+      text-decoration: none;
+      font-weight: 700;
+      border-bottom: 2px solid var(--pitch-bright);
+      padding-bottom: 2px;
+    }
+
+    #notice a:hover {
+      color: var(--pitch-highlight);
+      border-bottom-color: var(--pitch-highlight);
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .checkbox-container input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      padding: 0;
+      margin: 0;
+      accent-color: var(--pitch-bright);
+      cursor: pointer;
+    }
+
+    .checkbox-container label {
+      margin-bottom: 0;
+      color: var(--pitch-highlight);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .filter-live {
+      background: var(--pitch-main) !important;
+      border-color: var(--pitch-highlight) !important;
+      box-shadow: 0 0 0 3px rgba(129, 166, 159, 0.2) !important;
+    }
+
+    @media (max-width: 1200px) {
+      
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      align-items: end;
+      position: relative;
+      z-index: 1;
+    }
+
+    .controls > div:has(#countdown) {
+      grid-column: 1 / -1;
+    }
+    }
+
+    @media (max-width: 768px) {
+      
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      align-items: end;
+      position: relative;
+      z-index: 1;
+    }
+
+    .controls > div:has(#countdown) {
+      grid-column: 1 / -1;
+    }
+      .team-header {
+        padding: 16px 18px;
+      }
+      .team-title {
+        font-size: 20px;
+      
+      h1 {
+        font-size: 20px;
+      }
+      .title-icon {
+        font-size: 24px;
+      }
+      .title-badge {
+        font-size: 9px;
+        padding: 3px 8px;
+      }
+      }
+      .kitset-parts {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      }
+      h1 {
+        font-size: 20px;
+      }
+      .title-icon {
+        font-size: 24px;
+      }
+      .title-badge {
+        font-size: 9px;
+        padding: 3px 8px;
+      }
+    }
+  
+
+    #autoRefreshToggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 120px;
+      justify-content: center;
+    }
+
+    #autoRefreshToggle.active {
+      background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+      border-color: #ff4444;
+    }
+  
+    /* === GlobalUsage Button === */
+    .file-card {
+      position: relative;
+    }
+
+    .usage-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(10, 115, 76, 0.95);
+      color: white;
+      border: 2px solid white;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .usage-btn:hover {
+      background: var(--pitch-bright);
+      transform: scale(1.15);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    /* GlobalUsage Modal */
+    .usage-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 20px;
+    }
+
+    .usage-modal.active {
+      display: flex;
+    }
+
+    .usage-content {
+      background: var(--pitch-dark);
+      border: 3px solid var(--pitch-bright);
+      border-radius: 12px;
+      max-width: 650px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    }
+
+    .usage-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 2px solid var(--pitch-bright);
+      background: rgba(10, 115, 76, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .usage-header h2 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--pitch-highlight);
+    }
+
+    .usage-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 32px;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    .usage-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .usage-body {
+      padding: 20px;
+    }
+
+    .usage-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .usage-wiki {
+      margin-bottom: 24px;
+    }
+
+    .usage-wiki-name {
+      font-weight: 700;
+      color: var(--pitch-highlight);
+      font-size: 16px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid rgba(10, 115, 76, 0.3);
+    }
+
+    .usage-pages {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .usage-pages li {
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      background: rgba(10, 115, 76, 0.2);
+      border-radius: 8px;
+      border-left: 4px solid var(--pitch-bright);
+      transition: all 0.3s;
+    }
+
+    .usage-pages li:hover {
+      background: rgba(10, 115, 76, 0.35);
+      transform: translateX(4px);
+    }
+
+    .usage-pages a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .usage-pages a:hover {
+      color: var(--pitch-highlight);
+    }
+
+    .usage-empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-primary);
+      opacity: 0.6;
+      font-size: 16px;
+    }
+
+    .usage-loading {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-primary);
+      font-size: 16px;
+    }
+
+    .usage-error {
+      padding: 24px;
+      background: rgba(255, 68, 68, 0.2);
+      border: 2px solid #ff4444;
+      border-radius: 8px;
+      color: white;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+  .check-btn,.team-check-btn,.kitset-check-btn{background:rgba(255,255,255,.9);border:2px solid var(--pitch-bright);border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s}.check-btn{position:absolute;top:8px;left:8px;width:32px;height:32px;font-size:18px;z-index:10}.team-check-btn,.kitset-check-btn{position:absolute;top:15px;right:15px;width:36px;height:36px;font-size:20px;z-index:5}.check-btn:hover,.team-check-btn:hover,.kitset-check-btn:hover{background:var(--pitch-highlight);transform:scale(1.1)}.checked{background:var(--pitch-bright)!important;color:#fff!important}.checked::before{content:"✓";font-weight:700}.check-btn:not(.checked)::before,.team-check-btn:not(.checked)::before,.kitset-check-btn:not(.checked)::before{content:"○"}.settings-btn{background:rgba(255,255,255,.1);border:2px solid #fff;color:#fff;padding:10px 20px;border-radius:8px;cursor:pointer;margin-left:10px}.settings-btn:hover{background:rgba(255,255,255,.2)}.settings-panel{background:var(--pitch-dark);border:3px solid var(--pitch-bright);border-radius:12px;padding:20px;margin:20px 0;display:none}.settings-panel.active{display:block}.settings-panel h3{margin:0 0 15px;color:var(--pitch-highlight)}.settings-panel button{background:var(--pitch-bright);color:#fff;border:none;padding:12px 24px;border-radius:8px;cursor:pointer;margin:0 10px 10px 0}.settings-panel button:hover{background:var(--pitch-highlight)}.settings-panel .stats{margin-top:15px;padding:12px;background:rgba(10,115,76,.2);border-radius:8px}.team-card,.kitset-card{position:relative}
+/* ============================================================================
+     TEAM-ABHAKEN FUNKTIONALITÄT - v3.4.0 | 2025-10-06
+     ============================================================================ */
+  .team-header{position:relative;padding-right:45px}
+  .team-check-btn{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:32px;height:32px;border:3px solid #666;border-radius:6px;background:white;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);box-shadow:0 2px 4px rgba(0,0,0,.1);z-index:10;outline-offset:2px}
+  .team-check-btn:hover{border-color:#4CAF50;background:#f1f8f4;transform:translateY(-50%) scale(1.05);box-shadow:0 4px 8px rgba(76,175,80,.2)}
+  .team-check-btn:focus{outline:3px solid #4CAF50;outline-offset:2px}
+  .team-check-btn.checked{background:linear-gradient(135deg,#4CAF50 0%,#45a049 100%);border-color:#4CAF50;animation:checkBounce .4s ease}
+  .team-check-btn.checked::after{content:'✓';position:absolute;color:white;font-size:22px;font-weight:bold;left:50%;top:50%;transform:translate(-50%,-50%);text-shadow:0 1px 2px rgba(0,0,0,.2)}
+  @keyframes checkBounce{0%,100%{transform:translateY(-50%) scale(1)}50%{transform:translateY(-50%) scale(1.15)}}
+  .team-card.completed{display:none;transition:opacity .3s ease}
+  .show-completed .team-card.completed{display:block;opacity:.55;filter:grayscale(30%)}
+  .show-completed .team-card.completed .team-header{background:rgba(76,175,80,.1);border-left:4px solid #4CAF50;padding-left:12px}
+  .toast-notification{position:fixed;bottom:30px;right:30px;background:rgba(76,175,80,.95);color:white;padding:12px 20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.2);font-size:14px;font-weight:500;z-index:10000;opacity:0;transform:translateY(20px);transition:all .3s cubic-bezier(.4,0,.2,1);pointer-events:none}
+  .toast-notification.show{opacity:1;transform:translateY(0)}
+  .toast-notification.undo{background:rgba(255,152,0,.95)}
+  .team-statistics{display:flex;align-items:center;gap:15px;padding:10px 15px;background:linear-gradient(135deg,#e8f5e9 0%,#c8e6c9 100%);border-radius:8px;font-size:14px;font-weight:600;color:#2e7d32;margin-bottom:15px;box-shadow:0 2px 4px rgba(0,0,0,.05)}
+  .team-statistics .stat-item{display:flex;align-items:center;gap:6px}
+  .team-statistics .stat-icon{font-size:18px}
+  .team-statistics .progress-bar{flex:1;height:8px;background:rgba(255,255,255,.6);border-radius:4px;overflow:hidden;min-width:120px}
+  .team-statistics .progress-fill{height:100%;background:linear-gradient(90deg,#4CAF50 0%,#45a049 100%);border-radius:4px;transition:width .5s ease}
+  .reset-completed-btn{background:linear-gradient(135deg,#ff6b6b 0%,#ee5a6f 100%);color:white;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600;transition:all .3s ease;box-shadow:0 2px 4px rgba(0,0,0,.1)}
+  .reset-completed-btn:hover{background:linear-gradient(135deg,#ff5252 0%,#e63946 100%);transform:translateY(-1px);box-shadow:0 4px 8px rgba(0,0,0,.15)}
+  .filter-checkbox-group{display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(76,175,80,.1);border-radius:6px;cursor:pointer;transition:background .3s ease}
+  .filter-checkbox-group:hover{background:rgba(76,175,80,.15)}
+  .filter-checkbox-group input[type="checkbox"]{width:18px;height:18px;cursor:pointer;accent-color:#4CAF50}
+  .filter-checkbox-group label{cursor:pointer;user-select:none;font-weight:500}
+  @media (max-width:768px){.team-check-btn{width:28px;height:28px;border-width:2px}.team-statistics{flex-wrap:wrap;font-size:12px}.toast-notification{bottom:20px;right:20px;left:20px;text-align:center}}
+  @media (prefers-color-scheme:dark){.team-check-btn{background:#2a2a2a;border-color:#888}.team-check-btn:hover{background:#1a3a1a}.team-statistics{background:linear-gradient(135deg,#1b5e20 0%,#2e7d32 100%);color:#c8e6c9}}
+
+</style>
+</head>
+<body>
+<header>
+  <h1>
+    <span class="title-icon">⚽</span>
+    <span class="title-main">Neue Commons-Trikots</span>
+    <span class="title-badge">NEU</span>
+  </h1>
+
+  <div class="header-actions">
+    <button onclick="fetchData()" class="primary-btn">🔄 Aktualisieren</button>
+    <button onclick="toggleFilters()" class="secondary-btn">
+      <span id="filterIcon">▼</span> Filter
+    </button><button onclick="toggleSettings()" class="settings-btn">⚙️</button>
+  </div>
+
+  <div id="filterPanel" class="filter-panel collapsed">
+    <div class="filter-grid">
+      <div>
+        <label>📅 Datum (nach)</label>
+        <input type="date" id="after">
+      </div>
+      <div>
+        <label>🔢 Limit</label>
+        <input type="number" id="limit" value="1000" min="1">
+      </div>
+      <div>
+        <label>📊 Tiefe</label>
+        <input type="number" id="depth" value="50" min="1">
+      </div>
+      <div>
+        <label>🖼️ Thumb-Breite</label>
+        <input type="number" id="width" value="120" min="50">
+      </div>
+      <div>
+        <label>⚽ Saison</label>
+        <select id="seasonFilter">
+          <option value="">Alle Saisons</option>
+        </select>
+      </div>
+      <div>
+        <label>👁️ Ansicht</label>
+        <select id="viewMode">
+          <option value="teams">Teams</option>
+          <option value="kitsets">Trikotsets</option>
+          <option value="single">Einzeln</option>
+        </select>
+      </div>
+      <div>
+        <input type="checkbox" id="filterTrikotTeile" checked>
+        <label for="filterTrikotTeile">Nur Trikot-Teile</label>
+      </div>
+      <div class="filter-checkbox-group">
+        <input type="checkbox" id="showCompleted" aria-label="Abgeschlossene Teams anzeigen">
+        <label for="showCompleted">✓ Abgeschlossene Teams anzeigen</label>
+      </div>
+
+    </div>
+
+    <div class="auto-refresh-section">
+      <h3>🔄 Auto-Refresh</h3>
+      <div class="refresh-controls">
+        <button id="refresh" class="toggle-btn">
+          <span id="autoRefreshIcon">▶️</span>
+          <span id="autoRefreshText">Start</span>
+        </button>
+        <select id="refreshInterval">
+          <option value="5">5 Min</option>
+          <option value="10" selected>10 Min</option>
+          <option value="15">15 Min</option>
+          <option value="30">30 Min</option>
+        </select>
+      </div>
+      <div id="countdown">Auto-Refresh deaktiviert</div>
+    </div>
+  </div>
+  <!-- Team-Statistik -->
+  <div class="team-statistics" id="teamStatistics" style="display: none;">
+    <div class="stat-item">
+      <span class="stat-icon">📊</span>
+      <span id="statsText">0 von 0 Teams geprüft</span>
+    </div>
+    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+    </div>
+    <button class="reset-completed-btn" id="resetCompleted" title="Alle Abhakungen zurücksetzen">
+      🔄 Zurücksetzen
+    </button>
+  </div>
+  <div class="toast-notification" id="toastNotification" role="alert" aria-live="polite"></div>
+  
+
+  <div id="notice"></div>
+<div id="settingsPanel" class="settings-panel"><h3>⚙️ Einstellungen</h3><button onclick="showAllHidden()">👁️ Anzeigen</button><button onclick="clearAllChecked()">🗑️ Löschen</button><div class="stats"><span id="statsText">0</span></div></div></header>
+
+<div class="wrap">
+  <div class="grid" id="grid-teams"></div>
+</div>
+
+<div class="loading" id="loading">
+  <div class="box">Lade Daten…</div>
+</div>
+
+<script>
+
+/* Team-Abhaken v3.4.0 */
+const STORAGE_KEYS={COMPLETED_TEAMS:'completed_teams_v2',SHOW_COMPLETED:'show_completed_teams'};let completedTeams=new Map(),showCompletedTeams=!1,toastTimeout=null;function calculateTeamDataHash(e){try{const t=JSON.stringify({kitsets:e.kitsets?.length||0,parts:e.total_parts||0});let a=0;for(let e=0;e<t.length;e++){const s=t.charCodeAt(e);a=(a<<5)-a+s,a&=a}return a.toString(36)}catch(e){return console.error("[Team-Abhaken] Hash-Fehler:",e),Date.now().toString(36)}}function loadCompletedTeams(){try{const e=localStorage.getItem(STORAGE_KEYS.COMPLETED_TEAMS);if(!e)return void(completedTeams=new Map);const t=JSON.parse(e);completedTeams=Array.isArray(t)?new Map(t.map(e=>[e,{timestamp:Date.now(),dataHash:null}])):"object"==typeof t?new Map(Object.entries(t)):new Map,console.log(`[Team-Abhaken] ${completedTeams.size} Teams geladen`)}catch(e){console.error("[Team-Abhaken] Fehler:",e),completedTeams=new Map}}function saveCompletedTeams(){try{localStorage.setItem(STORAGE_KEYS.COMPLETED_TEAMS,JSON.stringify(Object.fromEntries(completedTeams)))}catch(e){console.error("[Team-Abhaken] Speichern fehlgeschlagen:",e)}}function showToast(e,t="success"){const a=document.getElementById("toastNotification");a&&(toastTimeout&&clearTimeout(toastTimeout),a.textContent=e,a.className="toast-notification show","undo"===t&&a.classList.add("undo"),toastTimeout=setTimeout(()=>a.classList.remove("show"),3e3))}function extractTeamNameFromId(e){try{const t=e.split("-");if(t.length>=2){const e=t[0].charAt(0).toUpperCase()+t[0].slice(1),a=t[1],s="20"+a.slice(0,2),o=a.slice(2,4);return`${e} ${s}/${o}`}return e}catch(t){return e}}function markTeamCompleted(e,t,a=null,s=!0){if(!e)return;try{t?(completedTeams.set(e,{timestamp:Date.now(),dataHash:a}),s&&showToast(`✓ ${extractTeamNameFromId(e)} als geprüft markiert`,"success")):(completedTeams.delete(e),s&&showToast(`↺ ${extractTeamNameFromId(e)} Markierung entfernt`,"undo")),saveCompletedTeams(),updateTeamDisplay(e,t),updateStatistics()}catch(e){console.error("[Team-Abhaken] Markieren fehlgeschlagen:",e)}}function updateTeamDisplay(e,t){try{const a=document.querySelector(`[data-team-id="${e}"]`);if(!a)return;const s=a.querySelector(".team-check-btn");s&&(t?(s.classList.add("checked"),s.setAttribute("aria-checked","true")):(s.classList.remove("checked"),s.setAttribute("aria-checked","false"))),a.querySelectorAll(".kitset-check-btn").forEach(e=>{t?(e.classList.add("checked"),e.setAttribute("aria-checked","true")):(e.classList.remove("checked"),e.setAttribute("aria-checked","false"))}),t?a.classList.add("completed"):a.classList.remove("completed")}catch(e){console.error("[Team-Abhaken] Display-Update fehlgeschlagen:",e)}}function areAllKitsetsChecked(e){try{const t=document.querySelector(`[data-team-id="${e}"]`);if(!t)return!1;const a=Array.from(t.querySelectorAll(".kitset-check-btn"));return 0!==a.length&&a.every(e=>e.classList.contains("checked"))}catch(e){return!1}}function debounce(e,t){let a;return function(...s){clearTimeout(a),a=setTimeout(()=>e(...s),t)}}const updateStatistics=debounce(function(){try{const e=document.getElementById("teamStatistics"),t=document.getElementById("statsText"),a=document.getElementById("progressFill");if(!e||!t||!a)return;const s=document.querySelectorAll(".team-check-btn").length;if(0===s)return void(e.style.display="none");const o=completedTeams.size,c=Math.round(o/s*100);t.textContent=`${o} von ${s} Teams geprüft (${c}%)`,a.style.width=`${c}%`,a.parentElement.setAttribute("aria-valuenow",c),e.style.display="flex"}catch(e){console.error("[Team-Abhaken] Statistik-Fehler:",e)}},300);function initializeTeamButtons(){try{loadCompletedTeams();const e=document.querySelectorAll(".team-check-btn");console.log(`[Team-Abhaken] Initialisiere ${e.length} Buttons`),e.forEach(e=>{const t=e.getAttribute("data-team-id");if(!t)return;const a=e.closest(".team-group"),s={kitsets:a?.querySelectorAll(".kitset-card").length||0,total_parts:parseInt(a?.querySelector(".team-subtitle")?.textContent?.match(/(\d+) Teile/)?.[1]||"0")},o=calculateTeamDataHash(s),c=completedTeams.get(t);let i=!1;c&&(null===c.dataHash||c.dataHash===o?(i=!0,null===c.dataHash&&(completedTeams.set(t,{...c,dataHash:o}),saveCompletedTeams())):(completedTeams.delete(t),saveCompletedTeams())),updateTeamDisplay(t,i),e.setAttribute("role","checkbox"),e.setAttribute("aria-checked",i?"true":"false"),e.setAttribute("tabindex","0"),e.addEventListener("click",e=>{e.stopPropagation(),e.preventDefault();markTeamCompleted(t,!completedTeams.has(t),o,!0)}),e.addEventListener("keydown",t=>{"Enter"!==t.key&&" "!==t.key||(t.preventDefault(),e.click())})}),initializeKitsetButtonSync(),updateStatistics()}catch(e){console.error("[Team-Abhaken] Init-Fehler:",e)}}function initializeKitsetButtonSync(){try{document.querySelectorAll(".kitset-check-btn").forEach(e=>{const t=e.closest(".team-group"),a=t?.querySelector(".team-check-btn"),s=a?.getAttribute("data-team-id");s&&new MutationObserver(debounce(()=>{areAllKitsetsChecked(s)?completedTeams.has(s)||markTeamCompleted(s,!0,calculateTeamDataHash({kitsets:document.querySelector(`[data-team-id="${s}"]`)?.querySelectorAll(".kitset-card").length||0}),!1):completedTeams.has(s)&&markTeamCompleted(s,!1,null,!1)},100)).observe(e,{attributes:!0,attributeFilter:["class"]})})}catch(e){console.error("[Team-Abhaken] Sync-Fehler:",e)}}function initializeShowCompletedToggle(){try{const e=document.getElementById("showCompleted"),t=document.querySelector(".result-container")||document.body;if(!e)return;showCompletedTeams="true"===localStorage.getItem(STORAGE_KEYS.SHOW_COMPLETED),e.checked=showCompletedTeams,showCompletedTeams&&t.classList.add("show-completed"),e.addEventListener("change",e=>{showCompletedTeams=e.target.checked,localStorage.setItem(STORAGE_KEYS.SHOW_COMPLETED,showCompletedTeams),showCompletedTeams?t.classList.add("show-completed"):t.classList.remove("show-completed")})}catch(e){console.error("[Team-Abhaken] Toggle-Fehler:",e)}}function resetAllCompleted(){try{if(0===completedTeams.size)return void showToast("ℹ️ Keine abgehakten Teams","warning");if(!confirm(`Möchten Sie wirklich alle ${completedTeams.size} Teams zurücksetzen?`))return;const e=Array.from(completedTeams.keys());completedTeams.clear(),saveCompletedTeams(),e.forEach(e=>updateTeamDisplay(e,!1)),updateStatistics(),showToast(`✓ ${e.length} Teams zurückgesetzt`,"success")}catch(e){console.error("[Team-Abhaken] Reset-Fehler:",e)}}function initializeTeamCheckSystem(){try{console.log("[Team-Abhaken] System startet..."),initializeTeamButtons(),initializeShowCompletedToggle();const e=document.getElementById("resetCompleted");e&&e.addEventListener("click",resetAllCompleted),console.log("[Team-Abhaken] System bereit")}catch(e){console.error("[Team-Abhaken] System-Fehler:",e)}}"loading"===document.readyState?document.addEventListener("DOMContentLoaded",initializeTeamCheckSystem):setTimeout(initializeTeamCheckSystem,100);
+
+
+
+function formatDate(timestamp) {
+  if (!timestamp || timestamp.length !== 14) return timestamp;
+  const year = timestamp.substring(0, 4);
+  const month = timestamp.substring(4, 6);
+  const day = timestamp.substring(6, 8);
+  const hour = timestamp.substring(8, 10);
+  const minute = timestamp.substring(10, 12);
+  const second = timestamp.substring(12, 14);
+  const monthNames = ['Jan.', 'Feb.', 'März', 'Apr.', 'Mai', 'Juni', 
+                      'Juli', 'Aug.', 'Sept.', 'Okt.', 'Nov.', 'Dez.'];
+  const monthName = monthNames[parseInt(month) - 1];
+  return `${day}. ${monthName} ${year}, ${hour}:${minute}:${second} Uhr`;
+}
+
+const PETSCAN_PROXY = "https://kitproxy.toolforge.org/petscan";
+
+let allFiles = [];
+let isDataLoaded = false;
+
+function yesterday() {
+  const d = new Date();
+  d.setDate(d.getDate() - 1);
+  return d.toISOString().slice(0,10);
+}
+document.getElementById("after").value = yesterday();
+
+function readControls() {
+  return {
+	after: document.getElementById("after").value,
+	limit: document.getElementById("limit").value,
+	depth: document.getElementById("depth").value,
+	width: document.getElementById("width").value,
+	filterTrikotTeile: document.getElementById("filterTrikotTeile").checked,
+	seasonFilter: document.getElementById("seasonFilter").value,
+	viewMode: document.getElementById("viewMode").value,
+	kitTypeFilters: getSelectedKitTypes()
+  };
+}
+
+function getSelectedKitTypes() {
+  const select = document.getElementById('kitTypeFilter');
+  if (!select || !select.value) return [];
+  return [select.value];
+}
+
+function showLoading(on) {
+  document.getElementById("loading").style.display = on ? "flex" : "none";
+}
+
+function setNotice(text, link) {
+  const n = document.getElementById("notice");
+  if (link) {
+	n.innerHTML = `PetScan-Proxy-URL: <a href="${link}" target="_blank">öffnen</a> — bitte warten…`;
+  } else {
+	n.textContent = text;
+  }
+}
+
+async function fetchJSON(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(res.statusText);
+  return res.json();
+}
+
+function isTrikotTeil(filename) {
+  if (filename.startsWith('Category:')) {
+    return false;
+  }
+  const trikotTeile = ["body", "left arm", "left_arm", "right arm", "right_arm", "shorts", "socks"];
+  const lowerFilename = filename.toLowerCase();
+  return trikotTeile.some(teil => lowerFilename.includes(teil));
+}
+
+function extractSeasons(filename) {
+  const seasons = [];
+  const currentYear = new Date().getFullYear();
+  const cleanName = filename.replace(/^kit_/i, '').replace(/\.(png|jpg|jpeg|gif|svg)$/i, '');
+
+  const fourDigitMatch = cleanName.match(/(\d{2})(\d{2})[a-z]*$/i);
+  if (fourDigitMatch) {
+	const year1Suffix = parseInt(fourDigitMatch[1]);
+	const year2Suffix = parseInt(fourDigitMatch[2]);
+	const isConsecutive = (year2Suffix === year1Suffix + 1) || (year1Suffix === 99 && year2Suffix === 0);
+
+	if (isConsecutive) {
+	  const futureLimit = currentYear + 2;
+	  const year1_21st = 2000 + year1Suffix;
+
+	  if (year1_21st <= futureLimit) {
+		seasons.push(`${year1_21st}/${year2Suffix.toString().padStart(2, '0')}`);
+	  } else {
+		const year1_20th = 1900 + year1Suffix;
+		seasons.push(`${year1_20th}/${year2Suffix.toString().padStart(2, '0')}`);
+	  }
+	  return seasons;
+	}
+  }
+
+  const twoDigitMatch = cleanName.match(/(\d{2})[a-z]*$/i);
+  if (twoDigitMatch) {
+	const yearSuffix = parseInt(twoDigitMatch[1]);
+	const futureLimit = currentYear + 2;
+	const year21st = 2000 + yearSuffix;
+
+	let baseYear = year21st <= futureLimit ? year21st : 1900 + yearSuffix;
+
+	if (yearSuffix === 0) {
+	  seasons.push(`${baseYear-1}/00`);
+	  seasons.push(`${baseYear}/01`);
+	} else if (yearSuffix === 99) {
+	  seasons.push(`${baseYear-1}/98`);
+	  seasons.push(`${baseYear}/00`);
+	} else {
+	  const nextYearSuffix = (yearSuffix + 1).toString().padStart(2, '0');
+	  seasons.push(`${baseYear-1}/${yearSuffix.toString().padStart(2, '0')}`);
+	  seasons.push(`${baseYear}/${nextYearSuffix}`);
+	}
+  }
+
+  return seasons;
+}
+
+function analyzeKitFilename(filename) {
+  const cleanName = filename
+	.replace(/\.(png|jpg|jpeg|gif|svg)$/i, '')
+	.replace(/^kit[_\s]/i, '');
+
+  const result = {
+	original: filename,
+	part: null,
+	team: null,
+	season: null,
+	kit_type: null,
+	is_long_socks: false,
+	is_teamware: false,
+	manufacturer: null,
+	set_id: null
+  };
+
+  const partPatterns = {
+	body: /body/i,
+	left_arm: /left[_\s]arm/i,
+	right_arm: /right[_\s]arm/i,
+	shorts: /shorts/i,
+	socks: /socks/i
+  };
+
+  let workingName = cleanName;
+  for (const [partName, pattern] of Object.entries(partPatterns)) {
+	if (pattern.test(workingName)) {
+	  result.part = partName;
+	  workingName = workingName.replace(pattern, '').replace(/^_+|_+$/g, '').trim();
+	  break;
+	}
+  }
+
+  if (!result.part) return result;
+
+  const fourDigitMatch = workingName.match(/^(.+?)(\d{4})([a-z]+)$/i);
+  if (fourDigitMatch) {
+	const teamName = fourDigitMatch[1].replace(/^_+|_+$/g, '').trim();
+	if (!/^(nike|adidas|puma|umbro|kappa)/i.test(teamName)) {
+	  result.team = teamName;
+	  result.season = fourDigitMatch[2];
+	  let kitTypeFull = fourDigitMatch[3].toLowerCase();
+
+	  if (result.part === 'socks' && kitTypeFull.endsWith('l') && kitTypeFull.length > 1) {
+		result.is_long_socks = true;
+		result.kit_type = kitTypeFull.slice(0, -1);
+	  } else {
+		result.kit_type = kitTypeFull;
+      if (result.kit_type) {
+        const norm = result.kit_type.toLowerCase();
+        if (norm === 'away') result.kit_type = 'a';
+        if (norm === 'home') result.kit_type = 'h';
+        if (norm === 'third') result.kit_type = 't';
+        if (norm === 'gk' || norm === 'g') result.kit_type = 'gk';
+      }
+	  }
+
+	  result.set_id = `${result.team}_${result.season}_${result.kit_type}`;
+	  return result;
+	}
+  }
+
+  const twoDigitMatch = workingName.match(/^(.+?)(\d{2})([a-z]+)$/i);
+  if (twoDigitMatch) {
+	const teamName = twoDigitMatch[1].replace(/^_+|_+$/g, '').trim();
+	if (!/^(nike|adidas|puma|umbro|kappa)/i.test(teamName)) {
+	  result.team = teamName;
+	  result.season = twoDigitMatch[2];
+	  let kitTypeFull = twoDigitMatch[3].toLowerCase();
+
+	  if (result.part === 'socks' && kitTypeFull.endsWith('l') && kitTypeFull.length > 1) {
+		result.is_long_socks = true;
+		result.kit_type = kitTypeFull.slice(0, -1);
+	  } else {
+		result.kit_type = kitTypeFull;
+      if (result.kit_type) {
+        const norm = result.kit_type.toLowerCase();
+        if (norm === 'away') result.kit_type = 'a';
+        if (norm === 'home') result.kit_type = 'h';
+        if (norm === 'third') result.kit_type = 't';
+        if (norm === 'gk' || norm === 'g') result.kit_type = 'gk';
+      }
+	  }
+
+	  result.set_id = `${result.team}_${result.season}_${result.kit_type}`;
+	  return result;
+	}
+  }
+
+  const manufacturerMatch = workingName.match(/^(nike|adidas|puma|umbro|kappa|joma|macron|hummel|errea|jako)/i);
+  const teamwareIndicators = [
+	/ultimate/i, /park/i, /challenge/i, /striped/i, /tiro/i,
+	/[a-z]+\d+(fy|w|lb|rb|vb|n|b)$/i
+  ];
+
+  let isTeamware = !!manufacturerMatch;
+  if (!isTeamware) {
+	isTeamware = teamwareIndicators.some(pattern => pattern.test(workingName));
+  }
+
+  if (isTeamware) {
+	result.is_teamware = true;
+	result.manufacturer = manufacturerMatch ? manufacturerMatch[1].toLowerCase() : 'unknown';
+	result.set_id = `teamware_${result.manufacturer}_${workingName}`;
+	return result;
+  }
+
+  const kitTypeMatch = workingName.match(/^(.+?)([a-z]+)$/i);
+  if (kitTypeMatch) {
+	result.team = kitTypeMatch[1].replace(/^_+|_+$/g, '').trim();
+	let kitTypeFull = kitTypeMatch[2].toLowerCase();
+
+	if (result.part === 'socks' && kitTypeFull.endsWith('l') && kitTypeFull.length > 1) {
+	  result.is_long_socks = true;
+	  result.kit_type = kitTypeFull.slice(0, -1);
+	} else {
+	  result.kit_type = kitTypeFull;
+      if (result.kit_type) {
+        const norm = result.kit_type.toLowerCase();
+        if (norm === 'away') result.kit_type = 'a';
+        if (norm === 'home') result.kit_type = 'h';
+        if (norm === 'third') result.kit_type = 't';
+        if (norm === 'gk' || norm === 'g') result.kit_type = 'gk';
+      }
+	}
+
+	result.set_id = `${result.team}_noseason_${result.kit_type}`;
+	return result;
+  }
+
+  result.team = workingName || 'unknown';
+  result.set_id = `${result.team}_unknown_unknown`;
+  return result;
+}
+
+function getFilteredFiles() {
+  const {filterTrikotTeile, seasonFilter, kitTypeFilters} = readControls();
+  let filtered = [...allFiles];
+
+  if (filterTrikotTeile) {
+	filtered = filtered.filter(f => isTrikotTeil(f.title));
+  }
+
+  if (seasonFilter && seasonFilter !== '') {
+	if (seasonFilter === 'keine') {
+	  filtered = filtered.filter(f => extractSeasons(f.title).length === 0);
+	} else {
+	  filtered = filtered.filter(f => {
+		const fileSeasons = extractSeasons(f.title);
+		return fileSeasons.includes(seasonFilter);
+	  });
+	}
+  }
+
+  if (kitTypeFilters.length > 0) {
+	filtered = filtered.filter(f => {
+	  const analysis = analyzeKitFilename(f.title);
+	  return analysis.kit_type && kitTypeFilters.includes(analysis.kit_type);
+	});
+  }
+
+  return filtered;
+}
+
+function populateSeasonFilter() {
+  const {filterTrikotTeile} = readControls();
+  const seasonCounts = new Map();
+
+  const relevantFiles = allFiles.filter(file => {
+	if (filterTrikotTeile) {
+	  return isTrikotTeil(file.title);
+	}
+	return true;
+  });
+
+  relevantFiles.forEach(file => {
+	const seasons = extractSeasons(file.title);
+	seasons.forEach(season => {
+	  seasonCounts.set(season, (seasonCounts.get(season) || 0) + 1);
+	});
+  });
+
+  const sortedSeasons = Array.from(seasonCounts.keys()).sort((a, b) => {
+	const yearA = parseInt(a.split('/')[0]);
+	const yearB = parseInt(b.split('/')[0]);
+	return yearB - yearA;
+  });
+
+  const select = document.getElementById("seasonFilter");
+  const currentValue = select.value;
+
+  const allOption = select.querySelector('option[value=""]');
+  select.innerHTML = '';
+  select.appendChild(allOption);
+
+  const filesWithoutSeason = relevantFiles.filter(f => extractSeasons(f.title).length === 0);
+  if (filesWithoutSeason.length > 0) {
+	const noSeasonOption = document.createElement('option');
+	noSeasonOption.value = 'keine';
+	noSeasonOption.textContent = `Keine Saison (${filesWithoutSeason.length})`;
+	select.appendChild(noSeasonOption);
+  }
+
+  sortedSeasons.forEach(season => {
+	const option = document.createElement('option');
+	option.value = season;
+	option.textContent = `${season} (${seasonCounts.get(season)})`;
+	select.appendChild(option);
+  });
+
+  if (currentValue && Array.from(select.options).some(opt => opt.value === currentValue)) {
+	select.value = currentValue;
+  }
+}
+
+function populateKitTypeFilter() {
+  const filteredFiles = getFilteredFiles();
+  const kitTypeCounts = new Map();
+
+  filteredFiles.forEach(file => {
+    const analysis = analyzeKitFilename(file.title);
+    if (analysis.kit_type && !analysis.is_teamware) {
+      let normalizedType = analysis.kit_type.toLowerCase();
+      if (normalizedType === 'away') normalizedType = 'a';
+      if (normalizedType === 'home') normalizedType = 'h';
+      if (normalizedType === 'third') normalizedType = 't';
+      if (normalizedType === 'gk' || normalizedType === 'g' || normalizedType === 'gkd') normalizedType = 'gk';
+      kitTypeCounts.set(normalizedType, (kitTypeCounts.get(normalizedType) || 0) + 1);
+    }
+  });
+
+  const select = document.getElementById('kitTypeFilter');
+  if (!select) return;
+  const currentValue = select.value;
+  select.innerHTML = '<option value="">Alle Trikottypen</option>';
+
+  const sortedTypes = Array.from(kitTypeCounts.keys()).sort((a, b) => {
+    const priority = {h: 1, a: 2, t: 3, gk: 4};
+    const aPrio = priority[a] || 999;
+    const bPrio = priority[b] || 999;
+    if (aPrio !== bPrio) return aPrio - bPrio;
+    return a.localeCompare(b);
+  });
+
+  const typeNames = {
+    h: '🏠 Heim', a: '✈️ Auswärts', t: '🔄 Ausweich',
+    e: '🏆 Europa', f: '4️⃣ Viertes', gk: '🧤 Torhüter',
+    tr: '🏃 Training', tr1: '🏃 TR 1', tr2: '🏃 TR 2'
+  };
+
+  sortedTypes.forEach(kitType => {
+    const count = kitTypeCounts.get(kitType);
+    const option = document.createElement('option');
+    option.value = kitType;
+    const displayName = typeNames[kitType] || `⚽ ${kitType.toUpperCase()}`;
+    option.textContent = `${displayName} (${count})`;
+    select.appendChild(option);
+  });
+
+  if (currentValue && Array.from(select.options).some(opt => opt.value === currentValue)) {
+    select.value = currentValue;
+  }
+}
+
+
+function groupIntoKitsets(files) {
+  const kitsets = new Map();
+
+  files.forEach(file => {
+	const analysis = analyzeKitFilename(file.title);
+	if (!analysis.set_id) return;
+
+	if (!kitsets.has(analysis.set_id)) {
+	  kitsets.set(analysis.set_id, {
+		id: analysis.set_id,
+		team: analysis.team,
+		season: analysis.season,
+		kit_type: analysis.kit_type,
+		is_teamware: analysis.is_teamware,
+		manufacturer: analysis.manufacturer,
+		parts: [],
+		newest_date: null
+	  });
+	}
+
+	const kitset = kitsets.get(analysis.set_id);
+	kitset.parts.push({
+	  file: file,
+	  analysis: analysis
+	});
+
+	const fileDate = new Date(file.touched);
+	if (!kitset.newest_date || fileDate > kitset.newest_date) {
+	  kitset.newest_date = fileDate;
+	}
+  });
+
+  return Array.from(kitsets.values()).sort((a, b) => b.newest_date - a.newest_date);
+}
+
+// Neue Funktion: Gruppiere nach Teams
+function groupIntoTeams(files) {
+  const teams = new Map();
+
+  files.forEach(file => {
+	const analysis = analyzeKitFilename(file.title);
+	if (!analysis.team || analysis.is_teamware) return;
+
+	const teamKey = `${analysis.team}_${analysis.season || 'noseason'}`;
+
+	if (!teams.has(teamKey)) {
+	  teams.set(teamKey, {
+		team: analysis.team,
+		season: analysis.season,
+		kitsets: new Map(),
+		newest_date: null,
+		total_parts: 0
+	  });
+	}
+
+	const teamGroup = teams.get(teamKey);
+
+	// Erstelle Kitset innerhalb des Teams
+	const kitsetKey = analysis.kit_type || 'unknown';
+	if (!teamGroup.kitsets.has(kitsetKey)) {
+	  teamGroup.kitsets.set(kitsetKey, {
+		kit_type: analysis.kit_type,
+		parts: []
+	  });
+	}
+
+	teamGroup.kitsets.get(kitsetKey).parts.push({
+	  file: file,
+	  analysis: analysis
+	});
+
+	teamGroup.total_parts++;
+
+	const fileDate = new Date(file.touched);
+	if (!teamGroup.newest_date || fileDate > teamGroup.newest_date) {
+	  teamGroup.newest_date = fileDate;
+	}
+  });
+
+  return Array.from(teams.values()).sort((a, b) => b.newest_date - a.newest_date);
+}
+
+
+function safeId(str) {
+  if (!str) return 'unknown';
+  return str.replace(/[^a-zA-Z0-9_-]/g, '_');
+}
+
+function renderTeams() {
+  const {width} = readControls();
+  const filteredFiles = getFilteredFiles();
+  const teams = groupIntoTeams(filteredFiles);
+
+  const grid = document.getElementById("grid-teams");
+  grid.className = "grid";
+  grid.innerHTML = "";
+
+  if (teams.length === 0) {
+	setNotice(isDataLoaded ? "Keine Teams entsprechen den Filterkriterien." : "Keine Teams gefunden.");
+	return;
+  }
+
+  setNotice(`${teams.length} Teams gefunden.`);
+
+  teams.forEach(team => {
+	const teamCard = document.createElement("div");
+	teamCard.className = "team-group";
+
+    const safeTeam = safeId(team.team);
+    const safeSeason = safeId(team.season);
+
+	// Team Header
+	const season = team.season ? (team.season.length === 4 ? 
+	  `20${team.season.slice(0,2)}/20${team.season.slice(2)}` : 
+	  `Saison ${team.season}`) : 'Keine Saison';
+
+	const kitTypes = Array.from(team.kitsets.keys());
+	const typeNames = {
+	  h: 'Heim', a: 'Auswärts', t: 'Ausweich',
+	  e: 'Europa', f: 'Viertes', gkd: 'Torhüter'
+	};
+	const displayTypes = kitTypes.map(type => typeNames[type] || type).join(', ');
+
+	teamCard.innerHTML = `
+	  <div class="team-header">
+		<div class="team-title">${team.team.charAt(0).toUpperCase() + team.team.slice(1)}</div>
+		<div class="team-subtitle">${season} • ${displayTypes} • ${team.total_parts} Teile</div>
+      <button class="team-check-btn" data-team-id="${safeTeam}-${safeSeason}" role="checkbox" aria-checked="false" tabindex="0"></button>
+    </div>
+
+	  <div class="team-kits" id="team-kits-${safeTeam}-${safeSeason}">
+		<!-- Kitsets werden hier eingefügt -->
+	  </div>
+	`;
+
+	const teamKitsContainer = teamCard.querySelector(`#team-kits-${safeTeam}-${safeSeason}`);
+
+	// Sortiere Kit-Typen: h, a, t zuerst
+	const sortedKitTypes = Array.from(team.kitsets.keys()).sort((a, b) => {
+	  const priority = {h: 1, a: 2, t: 3};
+	  const aPrio = priority[a] || 999;
+	  const bPrio = priority[b] || 999;
+	  if (aPrio !== bPrio) return aPrio - bPrio;
+	  return a.localeCompare(b);
+	});
+
+	sortedKitTypes.forEach(kitType => {
+	  const kitset = team.kitsets.get(kitType);
+
+	  // Sortiere und bevorzuge lange Socken
+	  const partOrder = ['body', 'left_arm', 'right_arm', 'shorts', 'socks'];
+	  kitset.parts.sort((a, b) => {
+		const aIndex = partOrder.indexOf(a.analysis.part);
+		const bIndex = partOrder.indexOf(b.analysis.part);
+		return aIndex - bIndex;
+	  });
+
+	  const socksFiles = kitset.parts.filter(p => p.analysis.part === 'socks');
+	  if (socksFiles.length > 1) {
+		const longSocks = socksFiles.find(p => p.analysis.is_long_socks);
+		if (longSocks) {
+		  kitset.parts = kitset.parts.filter(p => 
+			p.analysis.part !== 'socks' || p.analysis.is_long_socks
+		  );
+		}
+	  }
+
+	  const kitsetCard = document.createElement("div");
+	  kitsetCard.className = "kitset-card";
+
+	  const displayName = typeNames[kitType] || kitType.toUpperCase();
+
+	  kitsetCard.innerHTML = `
+		<div class="kitset-header">
+		  <div class="kitset-title">${displayName}</div>
+		  <div class="kitset-subtitle">${kitset.parts.length} Teile</div>
+		</div>
+		<div class="kitset-parts">
+		  ${kitset.parts.map(part => {
+			const partNames = {
+			  body: 'Trikot', left_arm: 'L. Ärmel', right_arm: 'R. Ärmel',
+			  shorts: 'Hose', socks: part.analysis.is_long_socks ? 'Stutzen (L)' : 'Stutzen'
+			};
+
+			return `
+			  <div class="file-card" data-file="${part.file.title}" onclick="window.open(this.querySelector(\'.file-header a\').href, \'_blank\')" style="cursor: pointer;">
+				<button class="usage-btn" onclick="event.stopPropagation(); showUsageModal('${part.file.title}');" title="Verwendung anzeigen">📊</button>
+				<div class="file-header">
+				  <a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(part.file.title)}" target="_blank" rel="noopener noreferrer">
+					${partNames[part.analysis.part] || part.analysis.part}
+				  </a>
+				</div>
+				<div class="file-thumb">
+				  <img src="https://commons.wikimedia.org/w/thumb.php?f=${encodeURIComponent(part.file.title)}&w=${width}" alt="${part.file.title}">
+				</div>
+				<div class="file-meta">${part.file.len} Bytes • ${formatDate(part.file.touched)}</div>
+			  </div>
+			`;
+		  }).join('')}
+		</div>
+	  `;
+
+	  teamKitsContainer.appendChild(kitsetCard);
+	});
+
+	// Setze data-team-id
+    teamCard.setAttribute('data-team-id', `${safeTeam}-${safeSeason}`);
+    grid.appendChild(teamCard);
+      });
+      
+      // Team-Abhaken System initialisieren (v3.4.0)
+      setTimeout(() => {
+        if (typeof initializeTeamCheckSystem === 'function') {
+          initializeTeamCheckSystem();
+        }
+      }, 200);
+    }
+
+function renderKitsets() {
+  const {width} = readControls();
+  const filteredFiles = getFilteredFiles();
+  const kitsets = groupIntoKitsets(filteredFiles);
+
+  const grid = document.getElementById("grid-teams");
+  grid.className = "grid";
+  grid.innerHTML = "";
+
+  if (kitsets.length === 0) {
+	setNotice(isDataLoaded ? "Keine Trikotsets entsprechen den Filterkriterien." : "Keine Trikotsets gefunden.");
+	return;
+  }
+
+  setNotice(`${kitsets.length} Trikotsets gefunden.`);
+
+  kitsets.forEach(kitset => {
+	const card = document.createElement("div");
+	card.className = "kitset-card";
+
+	let title, subtitle;
+	if (kitset.is_teamware) {
+	  title = `${(kitset.manufacturer || 'Unknown').toUpperCase()} Teamware`;
+	  subtitle = `Template: ${kitset.id.split('_').slice(2).join('_')}`;
+	} else {
+	  const teamName = kitset.team || 'Unbekanntes Team';
+	  const season = kitset.season ? (kitset.season.length === 4 ? 
+		`20${kitset.season.slice(0,2)}/20${kitset.season.slice(2)}` : 
+		`${kitset.season}`) : '';
+	  const typeNames = {
+		h: 'Heim', a: 'Auswärts', t: 'Ausweich',
+		e: 'Europa', f: 'Viertes', gkd: 'Torhüter'
+	  };
+	  const typeName = typeNames[kitset.kit_type] || kitset.kit_type;
+
+	  title = `${teamName} ${typeName}`;
+	  subtitle = season ? `Saison ${season}` : 'Keine Saison';
+	}
+
+	const partOrder = ['body', 'left_arm', 'right_arm', 'shorts', 'socks'];
+	kitset.parts.sort((a, b) => {
+	  const aIndex = partOrder.indexOf(a.analysis.part);
+	  const bIndex = partOrder.indexOf(b.analysis.part);
+	  return aIndex - bIndex;
+	});
+
+	const socksFiles = kitset.parts.filter(p => p.analysis.part === 'socks');
+	if (socksFiles.length > 1) {
+	  const longSocks = socksFiles.find(p => p.analysis.is_long_socks);
+	  if (longSocks) {
+		kitset.parts = kitset.parts.filter(p => 
+		  p.analysis.part !== 'socks' || p.analysis.is_long_socks
+		);
+	  }
+	}
+
+	card.innerHTML = `
+	  <div class="kitset-header">
+		<div class="kitset-title">${title}</div>
+		<div class="kitset-subtitle">${subtitle} • ${kitset.parts.length} Teile</div>
+	  </div>
+	  <div class="kitset-parts">
+		${kitset.parts.map(part => {
+		  const partNames = {
+			body: 'Trikot', left_arm: 'Linker Ärmel', right_arm: 'Rechter Ärmel',
+			shorts: 'Hose', socks: part.analysis.is_long_socks ? 'Stutzen (lang)' : 'Stutzen'
+		  };
+
+		  return `
+			<div class="file-card" data-file="${part.file.title}" onclick="window.open(this.querySelector(\'.file-header a\').href, \'_blank\')" style="cursor: pointer;">
+				<button class="usage-btn" onclick="event.stopPropagation(); showUsageModal('${part.file.title}');" title="Verwendung anzeigen">📊</button>
+			  <div class="file-header">
+				<a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(part.file.title)}" target="_blank" rel="noopener noreferrer">
+				  ${partNames[part.analysis.part] || part.analysis.part}
+				</a>
+			  </div>
+			  <div class="file-thumb">
+				<img src="https://commons.wikimedia.org/w/thumb.php?f=${encodeURIComponent(part.file.title)}&w=${width}" alt="${part.file.title}">
+			  </div>
+			  <div class="file-meta">${part.file.len} Bytes • ${part.file.touched}</div>
+			</div>
+		  `;
+		}).join('')}
+	  </div>
+	`;
+
+	grid.appendChild(card);
+  });
+}
+
+function renderSingleFiles() {
+  const {width} = readControls();
+  const filteredFiles = getFilteredFiles();
+
+  const grid = document.getElementById("grid-teams");
+  grid.className = "grid single-grid";
+  grid.innerHTML = "";
+
+  if (filteredFiles.length === 0) {
+	setNotice(isDataLoaded ? "Keine Dateien entsprechen den Filterkriterien." : "Keine Dateien gefunden.");
+  } else {
+	const totalFiles = allFiles.length;
+	const filteredCount = filteredFiles.length;
+
+	if (filteredCount < totalFiles) {
+	  setNotice(`${filteredCount} von ${totalFiles} Dateien werden angezeigt.`);
+	} else {
+	  setNotice("");
+	}
+
+	filteredFiles.forEach(f => {
+	  const card = document.createElement("div");
+	  card.className = "card";
+	  card.innerHTML = `
+		<div class="card-header">
+		  <span class="card-title">
+			<a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(f.title)}" target="_blank" rel="noopener noreferrer">${f.title}</a>
+		  </span>
+		</div>
+		<div class="thumbs">
+		  <div class="thumb">
+			<img src="https://commons.wikimedia.org/w/thumb.php?f=${encodeURIComponent(f.title)}&w=${width}" alt="${f.title}">
+		  </div>
+		</div>
+		<div class="meta">Größe: ${f.len} Bytes · Geändert: ${f.touched}</div>
+	  `;
+	  grid.appendChild(card);
+	});
+  }
+}
+
+function renderFiles() {
+  const {viewMode} = readControls();
+
+  if (viewMode === 'teams') {
+	renderTeams();
+  } else if (viewMode === 'sets') {
+	renderKitsets();
+  } else {
+	renderSingleFiles();
+  }
+}
+
+async function fetchData() {
+  const {after, limit, depth} = readControls();
+  const params = new URLSearchParams({
+	language: "commons",
+	project: "wikimedia",
+	ns: "1",
+	depth,
+	combination: "union",
+	sortorder: "descending",
+	output_limit: limit,
+	categories: "Football kit templates\nAssociation football kit templates\nAssociation football kits",
+	format: "json",
+	doit: "1",
+	after: after.replaceAll("-","")+"000000"
+  });
+  const url = PETSCAN_PROXY + "?" + params.toString();
+  showLoading(true);
+  setNotice("", url);
+
+  console.log("fetchData aufgerufen");
+  try {
+    console.log("Starte API-Abfrage...");
+	const data = await fetchJSON(url);
+    console.log("Daten empfangen:", data);
+	allFiles = (data["*"]?.[0]?.a?.["*"]) || [];
+	isDataLoaded = true;
+
+	populateSeasonFilter();
+	populateKitTypeFilter();
+	renderFiles();
+
+  } catch (e) {
+    console.error("Fehler in fetchData:", e);
+	setNotice("Fehler: " + e.message);
+	allFiles = [];
+	isDataLoaded = false;
+  }
+
+  showLoading(false);
+}
+
+function applyFilters() {
+  if (!isDataLoaded) return;
+
+  populateSeasonFilter();
+  populateKitTypeFilter();
+  renderFiles();
+}
+
+// Event-Listener
+document.getElementById("refresh").addEventListener("click", e => {
+  e.preventDefault();
+  console.log("Aktualisieren-Button geklickt");
+  fetchData();
+});
+
+document.getElementById("seasonFilter").addEventListener("change", applyFilters);
+document.getElementById("filterTrikotTeile").addEventListener("change", applyFilters);
+document.getElementById("viewMode").addEventListener("change", applyFilters);
+
+document.getElementById("width").addEventListener("input", () => {
+  if (isDataLoaded) {
+	renderFiles();
+  }
+});
+
+document.getElementById("kitTypeFilter").addEventListener("change", e => {
+  console.log("Kit-Type Filter geändert zu:", e.target.value);
+  applyFilters();
+});
+
+
+
+// ========================================
+// AUTO-COLLAPSE HEADER
+// ========================================
+
+let lastScrollTop = 0;
+let scrollTimeout = null;
+let headerExpanded = true;
+const header = document.querySelector('header');
+
+function collapseHeader() {
+  if (headerExpanded && window.scrollY > 100) {
+    header.classList.add('collapsed');
+    headerExpanded = false;
+    console.log('📦 Header eingeklappt');
+  }
+}
+
+function expandHeader() {
+  header.classList.remove('collapsed');
+  headerExpanded = true;
+  console.log('📂 Header ausgeklappt');
+}
+
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+
+  if (scrollTop > lastScrollTop && scrollTop > 50) {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(collapseHeader, 800);
+  }
+
+  lastScrollTop = scrollTop;
+});
+
+header.addEventListener('click', (e) => {
+  if (!headerExpanded) {
+    expandHeader();
+  }
+});
+
+header.addEventListener('mouseenter', () => {
+  clearTimeout(scrollTimeout);
+});
+
+// ========================================
+// AUTO-REFRESH
+// ========================================
+
+let autoRefreshInterval = null;
+let autoRefreshCountdown = null;
+let remainingSeconds = 0;
+let autoRefreshEnabled = false;
+let currentScrollPosition = 0;
+
+function saveScrollPosition() {
+  currentScrollPosition = window.scrollY;
+}
+
+function restoreScrollPosition() {
+  setTimeout(() => {
+    window.scrollTo(0, currentScrollPosition);
+  }, 100);
+}
+
+function startAutoRefresh() {
+  const intervalMinutes = parseInt(document.getElementById('refreshInterval').value);
+  remainingSeconds = intervalMinutes * 60;
+  autoRefreshEnabled = true;
+  document.getElementById('autoRefreshToggle').classList.add('active');
+  document.getElementById('autoRefreshIcon').textContent = '⏸️';
+  document.getElementById('autoRefreshText').textContent = 'Stop';
+  updateCountdown();
+  autoRefreshCountdown = setInterval(updateCountdown, 1000);
+  localStorage.setItem('autoRefreshEnabled', 'true');
+  localStorage.setItem('autoRefreshInterval', intervalMinutes);
+}
+
+function stopAutoRefresh() {
+  autoRefreshEnabled = false;
+  if (autoRefreshInterval) clearInterval(autoRefreshInterval);
+  if (autoRefreshCountdown) clearInterval(autoRefreshCountdown);
+  document.getElementById('autoRefreshToggle').classList.remove('active');
+  document.getElementById('autoRefreshIcon').textContent = '▶️';
+  document.getElementById('autoRefreshText').textContent = 'Start';
+  document.getElementById('countdown').textContent = 'Auto-Refresh deaktiviert';
+  localStorage.removeItem('autoRefreshEnabled');
+  localStorage.removeItem('autoRefreshInterval');
+}
+
+function updateCountdown() {
+  if (remainingSeconds <= 0) {
+    saveScrollPosition();
+    fetchData().then(() => {
+      restoreScrollPosition();
+    });
+    const intervalMinutes = parseInt(document.getElementById('refreshInterval').value);
+    remainingSeconds = intervalMinutes * 60;
+  }
+  const minutes = Math.floor(remainingSeconds / 60);
+  const seconds = remainingSeconds % 60;
+  document.getElementById('countdown').textContent = 
+    `🔄 Nächstes Update in: ${minutes}:${seconds.toString().padStart(2, '0')} Min`;
+  remainingSeconds--;
+}
+
+document.getElementById('autoRefreshToggle').addEventListener('click', () => {
+  if (autoRefreshEnabled) stopAutoRefresh();
+  else startAutoRefresh();
+});
+
+document.getElementById('refreshInterval').addEventListener('change', () => {
+  if (autoRefreshEnabled) {
+    stopAutoRefresh();
+    startAutoRefresh();
+  }
+});
+
+window.addEventListener('load', () => {
+  const wasEnabled = localStorage.getItem('autoRefreshEnabled') === 'true';
+  const savedInterval = localStorage.getItem('autoRefreshInterval');
+  if (wasEnabled && savedInterval) {
+    document.getElementById('refreshInterval').value = savedInterval;
+    startAutoRefresh();
+  }
+});
+
+
+
+
+// Filter Toggle Funktion
+function toggleFilters() {
+  const panel = document.getElementById('filterPanel');
+  const icon = document.getElementById('filterIcon');
+  if (panel && icon) {
+    panel.classList.toggle('collapsed');
+    icon.textContent = panel.classList.contains('collapsed') ? '▼' : '▲';
+  }
+}
+
+
+// === LocalStorage: Filter-Werte speichern und laden ===
+
+function saveFilterValues() {
+  const after = document.getElementById('after');
+  const limit = document.getElementById('limit');
+  const depth = document.getElementById('depth');
+  const width = document.getElementById('width');
+  const filterTrikotTeile = document.getElementById('filterTrikotTeile');
+  const seasonFilter = document.getElementById('seasonFilter');
+  const viewMode = document.getElementById('viewMode');
+
+  if (after) localStorage.setItem('filter_after', after.value);
+  if (limit) localStorage.setItem('filter_limit', limit.value);
+  if (depth) localStorage.setItem('filter_depth', depth.value);
+  if (width) localStorage.setItem('filter_width', width.value);
+  if (filterTrikotTeile) localStorage.setItem('filter_trikotTeile', filterTrikotTeile.checked);
+  if (seasonFilter) localStorage.setItem('filter_season', seasonFilter.value);
+  if (viewMode) localStorage.setItem('filter_viewMode', viewMode.value);
+}
+
+function loadFilterValues() {
+  const after = document.getElementById('after');
+  const limit = document.getElementById('limit');
+  const depth = document.getElementById('depth');
+  const width = document.getElementById('width');
+  const filterTrikotTeile = document.getElementById('filterTrikotTeile');
+  const seasonFilter = document.getElementById('seasonFilter');
+  const viewMode = document.getElementById('viewMode');
+
+  // Datum: gespeicherter Wert oder gestern
+  if (after) {
+    const saved = localStorage.getItem('filter_after');
+    after.value = saved || yesterday();
+  }
+
+  // Andere Werte wiederherstellen (falls vorhanden)
+  if (limit && localStorage.getItem('filter_limit')) {
+    limit.value = localStorage.getItem('filter_limit');
+  }
+  if (depth && localStorage.getItem('filter_depth')) {
+    depth.value = localStorage.getItem('filter_depth');
+  }
+  if (width && localStorage.getItem('filter_width')) {
+    width.value = localStorage.getItem('filter_width');
+  }
+
+  // Checkbox: gespeicherter Wert oder Standard (checked)
+  if (filterTrikotTeile) {
+    const saved = localStorage.getItem('filter_trikotTeile');
+    if (saved !== null) {
+      filterTrikotTeile.checked = saved === 'true';
+    }
+    // Sonst bleibt checked-Attribut aus HTML
+  }
+
+  if (seasonFilter && localStorage.getItem('filter_season')) {
+    seasonFilter.value = localStorage.getItem('filter_season');
+  }
+  if (viewMode && localStorage.getItem('filter_viewMode')) {
+    viewMode.value = localStorage.getItem('filter_viewMode');
+  }
+}
+
+function attachFilterListeners() {
+  const inputs = ['after', 'limit', 'depth', 'width', 'filterTrikotTeile', 'seasonFilter', 'viewMode'];
+
+  inputs.forEach(id => {
+    const elem = document.getElementById(id);
+    if (elem) {
+      elem.addEventListener('change', saveFilterValues);
+    }
+  });
+}
+
+// Beim Laden der Seite
+window.addEventListener('load', function() {
+  loadFilterValues();
+  attachFilterListeners();
+});
+
+
+
+// === GlobalUsage Feature ===
+
+async function fetchGlobalUsage(filename) {
+  const cacheKey = 'usage_' + filename;
+  const cached = localStorage.getItem(cacheKey);
+
+  if (cached) {
+    try {
+      const data = JSON.parse(cached);
+      if (Date.now() - data.timestamp < 24 * 60 * 60 * 1000) {
+        return data.usage;
+      }
+    } catch (e) {}
+  }
+
+  const url = 'https://commons.wikimedia.org/w/api.php?' +
+    'action=query&prop=globalusage&titles=File:' + encodeURIComponent(filename) +
+    '&format=json&origin=*&gulimit=500';
+
+  const response = await fetch(url);
+  const data = await response.json();
+
+  const pages = data.query.pages;
+  const pageId = Object.keys(pages)[0];
+  const usage = pages[pageId].globalusage || [];
+
+  localStorage.setItem(cacheKey, JSON.stringify({
+    usage: usage,
+    timestamp: Date.now()
+  }));
+
+  return usage;
+}
+
+function showUsageModal(filename) {
+  const modal = document.getElementById('usageModal');
+  const body = document.getElementById('usageBody');
+
+  if (!modal || !body) return;
+
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  body.innerHTML = '<div class="usage-loading">⏳ Lädt Verwendungen...</div>';
+
+  fetchGlobalUsage(filename)
+    .then(usage => {
+      if (usage.length === 0) {
+        body.innerHTML = '<div class="usage-empty">📭 Diese Datei wird noch nicht verwendet.</div>';
+        return;
+      }
+
+      const byWiki = {};
+      usage.forEach(item => {
+        if (!byWiki[item.wiki]) byWiki[item.wiki] = [];
+        byWiki[item.wiki].push(item);
+      });
+
+      let html = '<ul class="usage-list">';
+      Object.keys(byWiki).sort().forEach(wiki => {
+        const pages = byWiki[wiki];
+        html += '<li class="usage-wiki">';
+        html += '<div class="usage-wiki-name">📖 ' + wiki + ' (' + pages.length + ')</div>';
+        html += '<ul class="usage-pages">';
+        pages.forEach(page => {
+          html += '<li><a href="' + page.url + '" target="_blank" rel="noopener">' + page.title + '</a></li>';
+        });
+        html += '</ul></li>';
+      });
+      html += '</ul>';
+      body.innerHTML = html;
+    })
+    .catch(error => {
+      body.innerHTML = '<div class="usage-error">❌ Fehler beim Laden.</div>';
+    });
+}
+
+function closeUsageModal() {
+  const modal = document.getElementById('usageModal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeUsageModal();
+});
+
+document.addEventListener('click', function(e) {
+  if (e.target.id === 'usageModal') closeUsageModal();
+});
+
+</script>
+
+  <!-- GlobalUsage Modal -->
+  <div id="usageModal" class="usage-modal">
+    <div class="usage-content">
+      <div class="usage-header">
+        <h2>📊 Verwendung auf Wikipedia</h2>
+        <button class="usage-close" onclick="closeUsageModal()">×</button>
+      </div>
+      <div id="usageBody" class="usage-body"></div>
+    </div>
+  </div>
+
+
+<script>
+// === Checkbox Feature - Komplett separates Script ===
+(function() {
+  var K = 'checked_items';
+
+  function get() {
+    var s = localStorage.getItem(K);
+    return s ? JSON.parse(s) : {files:[],teams:[],kitsets:[]};
+  }
+
+  function save(items) {
+    localStorage.setItem(K, JSON.stringify(items));
+    var el = document.getElementById('statsText');
+    if(el) el.textContent = (items.files.length + items.teams.length + items.kitsets.length) + ' ausgeblendet';
+  }
+
+  // Füge Buttons nach jedem Render hinzu
+  function addButtons() {
+    // Team Buttons
+    document.querySelectorAll('.team-group').forEach(function(card) {
+      if(sec.querySelector('.team-check-btn')) return;
+      var header = card.querySelector('.team-header');
+      if(!header) return;
+      var btn = document.createElement('button');
+      btn.className = 'team-check-btn';
+      header.insertBefore(btn, header.firstChild);
+    });
+
+    // Kitset Buttons
+    document.querySelectorAll('.kitset-card').forEach(function(card) {
+      if(card.querySelector('.kitset-check-btn')) return;
+      var header = card.querySelector('.kitset-header');
+      if(!header) return;
+      var btn = document.createElement('button');
+      btn.className = 'kitset-check-btn';
+      header.insertBefore(btn, header.firstChild);
+    });
+
+    // File Buttons
+    document.querySelectorAll('.file-card').forEach(function(card) {
+      if(card.querySelector('.check-btn')) return;
+      var btn = document.createElement('button');
+      btn.className = 'check-btn';
+      card.insertBefore(btn, card.firstChild);
+    });
+    console.log('[Buttons] Added:', document.querySelectorAll('.check-btn').length + ' file,', document.querySelectorAll('.team-check-btn').length + ' team,', document.querySelectorAll('.kitset-check-btn').length + ' kitset');
+  }
+
+  // Event Handler
+  document.addEventListener('click', function(e) {
+    var t = e.target;
+
+    if(t.classList.contains('check-btn')) {
+      e.stopPropagation();
+      e.preventDefault();
+      var card = t.closest('.file-card');
+      if(!card) return;
+      var fn = card.getAttribute('data-file');
+      if(!fn) return;
+      var c = get();
+      var i = c.files.indexOf(fn);
+      if(i > -1) {
+        c.files.splice(i, 1);
+        t.classList.remove('checked');
+      } else {
+        c.files.push(fn);
+        t.classList.add('checked');
+        card.style.display = 'none';
+      }
+      save(c);
+    }
+
+    if(t.classList.contains('team-check-btn')) {
+      console.log('[Team] Button clicked');
+      e.stopPropagation();
+      e.preventDefault();
+      var card = t.closest('.team-group');
+      console.log('[Team] Found card:', card);
+      if(!card) {
+        console.log('[Team] ERROR: No team-group found!');
+        return;
+      }
+      var tid = card.getAttribute('data-team-id');
+      console.log('[Team] data-team-id:', tid);
+      if(!tid) return;
+      var c = get();
+      var i = c.teams.indexOf(tid);
+      if(i > -1) {
+        c.teams.splice(i, 1);
+        t.classList.remove('checked');
+        card.style.display = '';
+      } else {
+        c.teams.push(tid);
+        t.classList.add('checked');
+        card.style.display = 'none';
+      }
+      save(c);
+    }
+
+    if(t.classList.contains('kitset-check-btn')) {
+      console.log('[Kitset] Button clicked');
+      e.stopPropagation();
+      e.preventDefault();
+      var kcard = t.closest('.kitset-card');
+      console.log('[Kitset] Found card:', kcard);
+      if(!kcard) {
+        console.log('[Kitset] ERROR: No kitset-card found!');
+        return;
+      }
+      var kid = kcard.getAttribute('data-kitset-id');
+      console.log('[Kitset] data-kitset-id:', kid);
+      if(!kid) return;
+      var c = get();
+      var i = c.kitsets.indexOf(kid);
+      if(i > -1) {
+        c.kitsets.splice(i, 1);
+        t.classList.remove('checked');
+      } else {
+        c.kitsets.push(kid);
+        t.classList.add('checked');
+        kcard.querySelectorAll('.file-card').forEach(function(fc) {
+          fc.style.display = 'none';
+        });
+      }
+      save(c);
+    }
+  }, true);
+
+  window.showAllHidden = function() {
+    document.querySelectorAll('[style*="display: none"]').forEach(function(e) {
+      e.style.display = '';
+    });
+    document.querySelectorAll('.checked').forEach(function(b) {
+      b.classList.remove('checked');
+    });
+  };
+
+  window.clearAllChecked = function() {
+    if(!confirm('Löschen?')) return;
+    localStorage.removeItem(K);
+    document.querySelectorAll('[style*="display: none"]').forEach(function(e) {
+      e.style.display = '';
+    });
+    document.querySelectorAll('.checked').forEach(function(b) {
+      b.classList.remove('checked');
+    });
+    save({files:[], teams:[], kitsets:[]});
+  };
+
+  window.toggleSettings = function() {
+    var p = document.getElementById('settingsPanel');
+    if(p) p.classList.toggle('active');
+  };
+
+  // Observer für dynamische Inhalte
+  var observer = new MutationObserver(function() {
+    addButtons();
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+
+  // Init
+  setTimeout(function() {
+    addButtons();
+    var c = get();
+    c.files.forEach(function(fn) {
+      document.querySelectorAll('[data-file="' + fn + '"]').forEach(function(e) {
+        e.style.display = 'none';
+      });
+    });
+    c.teams.forEach(function(tid) {
+      document.querySelectorAll('.team-group[data-team-id="' + tid + '"]').forEach(function(e) {
+        e.style.display = 'none';
+      });
+    });
+    c.kitsets.forEach(function(kid) {
+      document.querySelectorAll('.kitset-card[data-kitset-id="' + kid + '"]').forEach(function(k) {
+        k.querySelectorAll('.file-card').forEach(function(e) {
+          e.style.display = 'none';
+        });
+      });
+    });
+  }, 1000);
+})();
+</script>
+
+</body>
+</html>
