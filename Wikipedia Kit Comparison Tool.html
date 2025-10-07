@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wikipedia Kit Comparison Tool v1.3.0</title>
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%230A734C;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%2307593B;stop-opacity:1'/%3E%3C/linearGradient%3E%3ClinearGradient id='g2' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2381A69F;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%2307593B;stop-opacity:1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' fill='%23FFFFFF'/%3E%3Cg transform='translate(-8, 0)'%3E%3Cpath d='M25 25 L25 18 Q25 15 28 15 L35 15 Q38 15 38 18 L38 28 L45 28 L45 18 Q45 15 48 15 L55 15 Q58 15 58 18 L58 25 L62 28 L62 75 Q62 78 59 78 L25 78 Q22 78 22 75 L22 28 Z' fill='url(%23g1)' stroke='%2307261D' stroke-width='1.5'/%3E%3C/g%3E%3Cg transform='translate(18, 8)'%3E%3Cpath d='M25 25 L25 18 Q25 15 28 15 L35 15 Q38 15 38 18 L38 28 L45 28 L45 18 Q45 15 48 15 L55 15 Q58 15 58 18 L58 25 L62 28 L62 75 Q62 78 59 78 L25 78 Q22 78 22 75 L22 28 Z' fill='url(%23g2)' stroke='%2307261D' stroke-width='1.5'/%3E%3C/g%3E%3C/svg%3E">
+
+    <style>
+        /* VERSION: v1.3.0 - 2025-10-06
+           NEW: Language selector (German/English)
+           NEW: Full translation support for all UI elements */
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --color-primary: #0A734C;
+            --color-secondary: #07593B;
+            --color-dark: #07261D;
+            --color-darker: #060D0B;
+            --color-light: #81A69F;
+            --color-white: #FFFFFF;
+            --color-error: #DC3545;
+            --color-success: #28A745;
+            --color-mismatch: #FFE5E5;
+            --color-missing: #FFF3CD;
+            --color-match: #E8F5E9;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #F5F5F5;
+            color: var(--color-darker);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: var(--color-white);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        header h1 { font-size: 2em; margin-bottom: 10px; }
+        header p { opacity: 0.9; font-size: 1.1em; }
+
+        /* Language Selector */
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            display: flex;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px;
+            border-radius: 20px;
+        }
+        .lang-btn {
+            background: transparent;
+            color: var(--color-white);
+            border: none;
+            padding: 8px 16px;
+            font-size: 0.9em;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .lang-btn.active {
+            background: var(--color-white);
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; }
+        .input-section {
+            background: var(--color-white);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .input-section h2 { color: var(--color-dark); margin-bottom: 20px; font-size: 1.5em; }
+        .input-method { margin-bottom: 25px; }
+        .input-method label { 
+            display: block; 
+            font-weight: bold; 
+            color: var(--color-dark); 
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        .input-method input[type="text"], .input-method textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--color-light);
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        .input-method input[type="text"]:focus, .input-method textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+        .input-method textarea { min-height: 100px; resize: vertical; font-family: monospace; }
+        .input-method small { display: block; margin-top: 5px; color: #666; }
+        button {
+            background: var(--color-primary);
+            color: var(--color-white);
+            border: none;
+            padding: 12px 24px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-right: 10px;
+        }
+        button:hover { background: var(--color-secondary); }
+        button:disabled { background: #CCC; cursor: not-allowed; }
+        .button-group { margin-top: 20px; }
+        .progress-section {
+            background: var(--color-white);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        .progress-section.active { display: block; }
+        .progress-bar-container {
+            width: 100%;
+            height: 30px;
+            background: #E0E0E0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            width: 0%;
+            transition: width 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-white);
+            font-weight: bold;
+        }
+        .progress-text { text-align: center; color: var(--color-dark); }
+        .results-section { display: none; }
+        .results-section.active { display: block; }
+        .club-card {
+            background: var(--color-white);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .club-header {
+            background: var(--color-dark);
+            color: var(--color-white);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        .club-header:hover { background: var(--color-secondary); }
+        .club-header h3 { font-size: 1.3em; margin: 0; }
+        .club-header .toggle-icon { font-size: 1.5em; transition: transform 0.3s; }
+        .club-card.expanded .toggle-icon { transform: rotate(180deg); }
+        .club-status {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            margin-left: 15px;
+        }
+        .club-status.has-discrepancies { background: var(--color-error); }
+        .club-status.no-discrepancies { background: var(--color-success); }
+        .club-body { padding: 0; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .club-card.expanded .club-body { max-height: 5000px; transition: max-height 0.5s ease-in; }
+        .club-content { padding: 25px; }
+        .copy-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .copy-btn {
+            background: var(--color-secondary);
+            padding: 8px 16px;
+            font-size: 0.9em;
+        }
+        .copy-btn:hover { background: var(--color-primary); }
+        .copy-btn.copied { background: var(--color-success); }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.95em;
+        }
+        .comparison-table th {
+            background: var(--color-light);
+            color: var(--color-darker);
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+            border-bottom: 2px solid var(--color-dark);
+        }
+        .comparison-table th a {
+            color: var(--color-darker);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .comparison-table th a:hover { text-decoration: underline; }
+        .comparison-table td { padding: 10px 12px; border: 1px solid #DDD; }
+        .comparison-table tr:nth-child(even) { background: #F9F9F9; }
+        .param-column {
+            font-weight: bold;
+            background: #F0F0F0 !important;
+            color: var(--color-dark);
+            width: 20%;
+        }
+        .value-cell { font-family: monospace; }
+        .value-match { background: var(--color-match) !important; }
+        .value-mismatch { background: var(--color-mismatch) !important; font-weight: bold; }
+        .value-missing { background: var(--color-missing) !important; font-style: italic; color: #856404; }
+        .error-message { background: var(--color-error); color: var(--color-white); padding: 15px; border-radius: 5px; margin: 10px 0; }
+        .legend {
+            background: var(--color-white);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .legend h3 { color: var(--color-dark); margin-bottom: 15px; }
+        .legend-items { display: flex; flex-wrap: wrap; gap: 20px; }
+        .legend-item { display: flex; align-items: center; gap: 10px; }
+        .legend-color { width: 30px; height: 30px; border-radius: 5px; border: 1px solid #CCC; }
+        .set-divider {
+            background: var(--color-light);
+            color: var(--color-darker);
+            padding: 8px 12px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .version-info { text-align: center; color: #999; font-size: 0.9em; margin-top: 40px; padding: 20px; }
+        @media (max-width: 768px) {
+            .comparison-table { font-size: 0.85em; }
+            .param-column { width: 30%; }
+            .language-selector {
+                position: static;
+                justify-content: center;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="de" onclick="switchLanguage('de')">Deutsch</button>
+                <button class="lang-btn" data-lang="en" onclick="switchLanguage('en')">English</button>
+            </div>
+            <h1 id="headerTitle">⚽ Wikipedia Trikot-Vergleichstool</h1>
+            <p id="headerSubtitle">Vergleicht Trikotwerte zwischen de.wikipedia.org, en.wikipedia.org und pt.wikipedia.org</p>
+        </header>
+
+        <section class="input-section">
+            <h2 id="inputTitle">Clubs eingeben</h2>
+
+            <div class="input-method">
+                <label for="leagueUrl" id="labelOption1">Option 1: Liga-Seiten-URL (automatische Extraktion)</label>
+                <input type="text" id="leagueUrl" data-placeholder-de="z.B. https://en.wikipedia.org/wiki/2025_Eliteserien" data-placeholder-en="e.g. https://en.wikipedia.org/wiki/2025_Eliteserien">
+                <small id="helpOption1">Extrahiert automatisch alle Teams aus der Liga-Tabelle.</small>
+            </div>
+
+            <div class="input-method">
+                <label for="clubUrls" id="labelOption2">Option 2: Club-Wikipedia-URLs (eine pro Zeile)</label>
+                <textarea id="clubUrls" data-placeholder-de="https://en.wikipedia.org/wiki/Viking_FK&#10;https://en.wikipedia.org/wiki/Bodø/Glimt" data-placeholder-en="https://en.wikipedia.org/wiki/Viking_FK&#10;https://en.wikipedia.org/wiki/Bodø/Glimt"></textarea>
+                <small id="helpOption2">Gib vollständige Wikipedia-URLs ein, eine pro Zeile.</small>
+            </div>
+
+            <div class="input-method">
+                <label for="clubNames" id="labelOption3">Option 3: Club-Namen (einer pro Zeile)</label>
+                <textarea id="clubNames" data-placeholder-de="Viking FK&#10;Bodø/Glimt" data-placeholder-en="Viking FK&#10;Bodø/Glimt"></textarea>
+                <small id="helpOption3">Gib Club-Namen ein (englische Wikipedia-Seitentitel), einen pro Zeile.</small>
+            </div>
+
+            <div class="button-group">
+                <button id="startBtn">Vergleich starten</button>
+                <button id="resetBtn">Zurücksetzen</button>
+            </div>
+        </section>
+
+        <section id="progressSection" class="progress-section">
+            <h2 id="progressTitle">Fortschritt</h2>
+            <div class="progress-bar-container">
+                <div id="progressBar" class="progress-bar">
+                    <span id="progressPercent">0%</span>
+                </div>
+            </div>
+            <div id="progressText" class="progress-text">Initialisiere...</div>
+        </section>
+
+        <section id="legendSection" class="legend" style="display: none;">
+            <h3 id="legendTitle">Legende</h3>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: var(--color-match);"></div>
+                    <span id="legendMatch">Übereinstimmende Werte</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: var(--color-mismatch);"></div>
+                    <span id="legendMismatch">Abweichende Werte</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: var(--color-missing);"></div>
+                    <span id="legendMissing">Fehlende/Leere Werte</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="resultsSection" class="results-section"></section>
+
+        <footer class="version-info">
+            <p>Wikipedia Kit Comparison Tool v1.3.0 | 06.10.2025</p>
+        </footer>
+    </div>
+
+    <script>
+        // Translations
+        const translations = {
+            de: {
+                headerTitle: "⚽ Wikipedia Trikot-Vergleichstool",
+                headerSubtitle: "Vergleicht Trikotwerte zwischen de.wikipedia.org, en.wikipedia.org und pt.wikipedia.org",
+                inputTitle: "Clubs eingeben",
+                labelOption1: "Option 1: Liga-Seiten-URL (automatische Extraktion)",
+                helpOption1: "Extrahiert automatisch alle Teams aus der Liga-Tabelle.",
+                labelOption2: "Option 2: Club-Wikipedia-URLs (eine pro Zeile)",
+                helpOption2: "Gib vollständige Wikipedia-URLs ein, eine pro Zeile.",
+                labelOption3: "Option 3: Club-Namen (einer pro Zeile)",
+                helpOption3: "Gib Club-Namen ein (englische Wikipedia-Seitentitel), einen pro Zeile.",
+                startBtn: "Vergleich starten",
+                resetBtn: "Zurücksetzen",
+                progressTitle: "Fortschritt",
+                legendTitle: "Legende",
+                legendMatch: "Übereinstimmende Werte",
+                legendMismatch: "Abweichende Werte",
+                legendMissing: "Fehlende/Leere Werte",
+                processing: "Verarbeite",
+                initializing: "Initialisiere...",
+                extracting: "Extrahiere Teams aus Liga-Seite...",
+                alreadyProcessing: "Eine Verarbeitung läuft bereits.",
+                noClubsEntered: "Bitte gib mindestens einen Club über eine der drei Optionen ein.",
+                errorPrefix: "Fehler: ",
+                discrepanciesFound: "Abweichungen gefunden",
+                noDiscrepancies: "Keine Abweichungen",
+                copyBtn: "kopieren",
+                copied: "✓ Kopiert!",
+                copyFailed: "Kopieren fehlgeschlagen!",
+                parameter: "Parameter",
+                empty: "(leer)",
+                setHome: "Set 1 (Heimtrikot)",
+                setAway: "Set 2 (Auswärtstrikot)",
+                setThird: "Set 3 (Dritttrikot)"
+            },
+            en: {
+                headerTitle: "⚽ Wikipedia Kit Comparison Tool",
+                headerSubtitle: "Compares kit values between de.wikipedia.org, en.wikipedia.org and pt.wikipedia.org",
+                inputTitle: "Enter Clubs",
+                labelOption1: "Option 1: League Page URL (automatic extraction)",
+                helpOption1: "Automatically extracts all teams from the league table.",
+                labelOption2: "Option 2: Club Wikipedia URLs (one per line)",
+                helpOption2: "Enter complete Wikipedia URLs, one per line.",
+                labelOption3: "Option 3: Club Names (one per line)",
+                helpOption3: "Enter club names (English Wikipedia page titles), one per line.",
+                startBtn: "Start Comparison",
+                resetBtn: "Reset",
+                progressTitle: "Progress",
+                legendTitle: "Legend",
+                legendMatch: "Matching Values",
+                legendMismatch: "Differing Values",
+                legendMissing: "Missing/Empty Values",
+                processing: "Processing",
+                initializing: "Initializing...",
+                extracting: "Extracting teams from league page...",
+                alreadyProcessing: "A process is already running.",
+                noClubsEntered: "Please enter at least one club using one of the three options.",
+                errorPrefix: "Error: ",
+                discrepanciesFound: "Discrepancies Found",
+                noDiscrepancies: "No Discrepancies",
+                copyBtn: "copy",
+                copied: "✓ Copied!",
+                copyFailed: "Copy failed!",
+                parameter: "Parameter",
+                empty: "(empty)",
+                setHome: "Set 1 (Home Kit)",
+                setAway: "Set 2 (Away Kit)",
+                setThird: "Set 3 (Third Kit)"
+            }
+        };
+
+        let currentLang = 'de';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+
+            // Update language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            // Update all translatable elements
+            const t = translations[lang];
+            document.getElementById('headerTitle').textContent = t.headerTitle;
+            document.getElementById('headerSubtitle').textContent = t.headerSubtitle;
+            document.getElementById('inputTitle').textContent = t.inputTitle;
+            document.getElementById('labelOption1').textContent = t.labelOption1;
+            document.getElementById('helpOption1').textContent = t.helpOption1;
+            document.getElementById('labelOption2').textContent = t.labelOption2;
+            document.getElementById('helpOption2').textContent = t.helpOption2;
+            document.getElementById('labelOption3').textContent = t.labelOption3;
+            document.getElementById('helpOption3').textContent = t.helpOption3;
+            document.getElementById('startBtn').textContent = t.startBtn;
+            document.getElementById('resetBtn').textContent = t.resetBtn;
+            document.getElementById('progressTitle').textContent = t.progressTitle;
+            document.getElementById('legendTitle').textContent = t.legendTitle;
+            document.getElementById('legendMatch').textContent = t.legendMatch;
+            document.getElementById('legendMismatch').textContent = t.legendMismatch;
+            document.getElementById('legendMissing').textContent = t.legendMissing;
+
+            // Update placeholders
+            document.getElementById('leagueUrl').placeholder = document.getElementById('leagueUrl').getAttribute(`data-placeholder-${lang}`);
+            document.getElementById('clubUrls').placeholder = document.getElementById('clubUrls').getAttribute(`data-placeholder-${lang}`);
+            document.getElementById('clubNames').placeholder = document.getElementById('clubNames').getAttribute(`data-placeholder-${lang}`);
+
+            // Update progress text if visible
+            if (!currentProcessing) {
+                document.getElementById('progressText').textContent = t.initializing;
+            }
+
+            // Save preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        function t(key) {
+            return translations[currentLang][key] || key;
+        }
+
+        // Configuration
+        const INFOBOX_TEMPLATES = {
+            de: ["Infobox Fußballunternehmen", "Infobox Fußballklub", "Infobox Fußballverein", "Infobox Fußballnationalmannschaft"],
+            en: ["Infobox football club", "Infobox national football team"],
+            pt: ["Info/Clube de futebol", "Info/Seleção de futebol", "Infobox de clube de futebol"]
+        };
+
+        const PT_PARAM_MAPPING = {
+            "skin1": "pattern_b1", "skin_be1": "pattern_la1", "skin_bd1": "pattern_ra1",
+            "skin_calção1": "pattern_sh1", "skin_meia1": "pattern_so1",
+            "braçoesquerdo1": "leftarm1", "corpo1": "body1", "braçodireito1": "rightarm1",
+            "calções1": "shorts1", "meias1": "socks1",
+            "skin2": "pattern_b2", "skin_be2": "pattern_la2", "skin_bd2": "pattern_ra2",
+            "skin_calção2": "pattern_sh2", "skin_meia2": "pattern_so2",
+            "braçoesquerdo2": "leftarm2", "corpo2": "body2", "braçodireito2": "rightarm2",
+            "calções2": "shorts2", "meias2": "socks2",
+            "skin3": "pattern_b3", "skin_be3": "pattern_la3", "skin_bd3": "pattern_ra3",
+            "skin_calção3": "pattern_sh3", "skin_meia3": "pattern_so3",
+            "braçoesquerdo3": "leftarm3", "corpo3": "body3", "braçodireito3": "rightarm3",
+            "calções3": "shorts3", "meias3": "socks3"
+        };
+
+        const PARAM_ORDER = [
+            "pattern_la1", "pattern_b1", "pattern_ra1", "pattern_sh1", "pattern_so1",
+            "leftarm1", "body1", "rightarm1", "shorts1", "socks1",
+            "pattern_la2", "pattern_b2", "pattern_ra2", "pattern_sh2", "pattern_so2",
+            "leftarm2", "body2", "rightarm2", "shorts2", "socks2",
+            "pattern_la3", "pattern_b3", "pattern_ra3", "pattern_sh3", "pattern_so3",
+            "leftarm3", "body3", "rightarm3", "shorts3", "socks3"
+        ];
+
+        const WIKIPEDIA_API = {
+            de: "https://de.wikipedia.org/w/api.php",
+            en: "https://en.wikipedia.org/w/api.php",
+            pt: "https://pt.wikipedia.org/w/api.php"
+        };
+
+        let allClubs = [];
+        let currentProcessing = false;
+        let clubDataStore = {};
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved language preference
+            const savedLang = localStorage.getItem('preferredLanguage');
+            if (savedLang && (savedLang === 'de' || savedLang === 'en')) {
+                switchLanguage(savedLang);
+            }
+
+            document.getElementById('startBtn').addEventListener('click', startComparison);
+            document.getElementById('resetBtn').addEventListener('click', resetTool);
+            console.log("Wikipedia Kit Comparison Tool v1.3.0 loaded");
+        });
+
+        async function startComparison() {
+            if (currentProcessing) {
+                alert(t('alreadyProcessing'));
+                return;
+            }
+
+            allClubs = [];
+            clubDataStore = {};
+
+            try {
+                const leagueUrl = document.getElementById("leagueUrl").value.trim();
+                if (leagueUrl) {
+                    updateProgress(10, t('extracting'));
+                    const extractedClubs = await extractTeamsFromLeague(leagueUrl);
+                    console.log("Extracted from league:", extractedClubs);
+                    allClubs.push(...extractedClubs);
+                }
+
+                const clubUrls = document.getElementById("clubUrls").value.trim();
+                if (clubUrls) {
+                    const urls = clubUrls.split("\n").filter(u => u.trim());
+                    for (const url of urls) {
+                        const clubName = extractClubNameFromUrl(url);
+                        if (clubName) allClubs.push({ name: clubName });
+                    }
+                }
+
+                const clubNames = document.getElementById("clubNames").value.trim();
+                if (clubNames) {
+                    const names = clubNames.split("\n").filter(n => n.trim());
+                    for (const name of names) {
+                        allClubs.push({ name: name.trim() });
+                    }
+                }
+
+                if (allClubs.length === 0) {
+                    alert(t('noClubsEntered'));
+                    return;
+                }
+
+                allClubs = removeDuplicates(allClubs);
+                console.log("Total clubs to process:", allClubs.length);
+
+                currentProcessing = true;
+                document.getElementById("startBtn").disabled = true;
+                document.getElementById("progressSection").classList.add("active");
+                document.getElementById("legendSection").style.display = "block";
+
+                await processClubsSequentially();
+
+                currentProcessing = false;
+                document.getElementById("startBtn").disabled = false;
+                hideProgress();
+                showResults();
+
+            } catch (error) {
+                console.error("Error:", error);
+                showError(t('errorPrefix') + error.message);
+                currentProcessing = false;
+                document.getElementById("startBtn").disabled = false;
+                hideProgress();
+            }
+        }
+
+        async function extractTeamsFromLeague(url) {
+            try {
+                console.log("Extracting teams from:", url);
+                const pageTitle = extractPageTitleFromUrl(url);
+                console.log("Page title:", pageTitle);
+                const wikitext = await fetchWikitextByTitle("en", pageTitle);
+                return extractTeamNamesFromWikitext(wikitext);
+            } catch (error) {
+                console.error("Error extracting from league:", error);
+                return [];
+            }
+        }
+
+        function extractTeamNamesFromWikitext(wikitext) {
+            const teams = [];
+            const teamRegex = /\|\s*name_[A-Z]+\s*=\s*\[\[([^\]\|]+)(?:\|[^\]]+)?\]\]/gi;
+            let match;
+            while ((match = teamRegex.exec(wikitext)) !== null) {
+                const teamName = match[1].trim();
+                console.log("Found team:", teamName);
+                teams.push({ name: teamName });
+            }
+            return teams;
+        }
+
+        function extractPageTitleFromUrl(url) {
+            try {
+                const urlParts = url.split("/wiki/");
+                if (urlParts.length < 2) throw new Error("Invalid Wikipedia URL");
+                return decodeURIComponent(urlParts[1].split("#")[0]).replace(/_/g, " ");
+            } catch (error) {
+                console.error("Error extracting page title:", error);
+                return null;
+            }
+        }
+
+        function extractClubNameFromUrl(url) {
+            try {
+                const urlParts = url.split("/wiki/");
+                if (urlParts.length < 2) return null;
+                return decodeURIComponent(urlParts[1].split("#")[0]).replace(/_/g, " ");
+            } catch { return null; }
+        }
+
+        function removeDuplicates(clubs) {
+            const seen = new Set();
+            return clubs.filter(club => {
+                const normalized = club.name.toLowerCase();
+                if (seen.has(normalized)) return false;
+                seen.add(normalized);
+                return true;
+            });
+        }
+
+        async function processClubsSequentially() {
+            const resultsSection = document.getElementById("resultsSection");
+            resultsSection.innerHTML = "";
+
+            for (let i = 0; i < allClubs.length; i++) {
+                const club = allClubs[i];
+                const progress = 20 + ((i + 1) / allClubs.length) * 80;
+                updateProgress(progress, `${t('processing')} ${club.name} (${i + 1}/${allClubs.length})...`);
+
+                try {
+                    const jerseyData = await fetchClubJerseyData(club.name);
+                    clubDataStore[club.name] = jerseyData;
+                    const clubCard = createClubCard(club.name, jerseyData);
+                    resultsSection.appendChild(clubCard);
+                } catch (error) {
+                    console.error(`Error for ${club.name}:`, error);
+                    const errorCard = createErrorCard(club.name, error.message);
+                    resultsSection.appendChild(errorCard);
+                }
+                await sleep(500);
+            }
+        }
+
+        async function fetchClubJerseyData(clubName) {
+            console.log(`\n=== Fetching: ${clubName} ===`);
+
+            const langLinks = await getLanguageLinks(clubName);
+            console.log("Language links:", langLinks);
+
+            const [deData, enData, ptData] = await Promise.all([
+                fetchWikitextByTitle("de", langLinks.de || clubName),
+                fetchWikitextByTitle("en", langLinks.en || clubName),
+                fetchWikitextByTitle("pt", langLinks.pt || clubName)
+            ]);
+
+            const deParams = parseInfoboxParams(deData, "de");
+            const enParams = parseInfoboxParams(enData, "en");
+            const ptParams = parseInfoboxParams(ptData, "pt");
+
+            return {
+                de: { params: deParams, pageTitle: langLinks.de || clubName },
+                en: { params: enParams, pageTitle: langLinks.en || clubName },
+                pt: { params: mapPortugueseParams(ptParams), pageTitle: langLinks.pt || clubName }
+            };
+        }
+
+        async function getLanguageLinks(pageTitleEn) {
+            try {
+                const url = `${WIKIPEDIA_API.en}?action=query&titles=${encodeURIComponent(pageTitleEn)}&prop=langlinks&lllimit=500&redirects=1&format=json&origin=*`;
+                const response = await fetch(url);
+                const data = await response.json();
+
+                const pages = data.query.pages;
+                const pageId = Object.keys(pages)[0];
+
+                if (pageId === "-1") {
+                    console.warn("Page not found on en.wikipedia.org");
+                    return { en: pageTitleEn, de: null, pt: null };
+                }
+
+                const langlinks = pages[pageId].langlinks || [];
+                const links = { en: pageTitleEn, de: null, pt: null };
+
+                if (data.query.redirects && data.query.redirects.length > 0) {
+                    const redirect = data.query.redirects[0];
+                    links.en = redirect.to;
+                    console.log(`Redirect detected: ${redirect.from} → ${redirect.to}`);
+                }
+
+                langlinks.forEach(link => {
+                    if (link.lang === "de") links.de = link["*"];
+                    else if (link.lang === "pt") links.pt = link["*"];
+                });
+
+                return links;
+            } catch (error) {
+                console.error("Error fetching language links:", error);
+                return { en: pageTitleEn, de: null, pt: null };
+            }
+        }
+
+        async function fetchWikitextByTitle(lang, pageTitle) {
+            if (!pageTitle) return "";
+            try {
+                const url = `${WIKIPEDIA_API[lang]}?action=query&titles=${encodeURIComponent(pageTitle)}&prop=revisions&rvprop=content&rvslots=main&redirects=1&format=json&origin=*`;
+                console.log(`Fetching ${lang}.wikipedia: ${pageTitle}`);
+
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.query.redirects && data.query.redirects.length > 0) {
+                    const redirect = data.query.redirects[0];
+                    console.log(`${lang}: Redirect detected: ${redirect.from} → ${redirect.to}`);
+                }
+
+                const pages = data.query.pages;
+                const pageId = Object.keys(pages)[0];
+
+                if (pageId === "-1") {
+                    console.warn(`Page not found: ${pageTitle} on ${lang}.wikipedia.org`);
+                    return "";
+                }
+
+                return pages[pageId].revisions[0].slots.main["*"];
+            } catch (error) {
+                console.error(`Error fetching ${lang}.wikipedia.org:`, error);
+                return "";
+            }
+        }
+
+        function parseInfoboxParams(wikitext, lang) {
+            const params = {};
+            if (!wikitext) return params;
+
+            const templates = INFOBOX_TEMPLATES[lang] || [];
+            let infoboxText = null;
+
+            for (const templateName of templates) {
+                const escapedTemplate = templateName.replace(/\s+/g, "\\s+").replace(/\//g, "\\/");
+                const infoboxStart = wikitext.search(new RegExp(`\\{\\{\\s*${escapedTemplate}`, "i"));
+                if (infoboxStart !== -1) {
+                    console.log(`${lang}: Found template: ${templateName}`);
+                    infoboxText = extractTemplate(wikitext.substring(infoboxStart));
+                    break;
+                }
+            }
+
+            if (!infoboxText) {
+                console.log(`${lang}: No infobox found`);
+                return params;
+            }
+
+            const lines = infoboxText.split("\n");
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                const paramMatch = line.match(/^\s*\|\s*([\w_äöüÄÖÜßç]+)\s*=\s*(.*)$/);
+                if (paramMatch) {
+                    const paramName = paramMatch[1].trim();
+                    let paramValue = paramMatch[2].trim();
+                    if (paramName.match(/^(pattern_|leftarm|body|rightarm|shorts|socks|skin|braço|corpo|calções|meias)/i)) {
+                        let j = i + 1;
+                        while (j < lines.length && !lines[j].trim().startsWith("|") && !lines[j].trim().startsWith("}}")) {
+                            paramValue += " " + lines[j].trim();
+                            j++;
+                        }
+                        paramValue = paramValue.replace(/\}\}.*$/, "").trim();
+                        params[paramName] = paramValue;
+                    }
+                }
+            }
+
+            console.log(`${lang}: Found ${Object.keys(params).length} kit parameters`);
+            return params;
+        }
+
+        function extractTemplate(text) {
+            let depth = 0;
+            let result = "";
+            for (let i = 0; i < text.length - 1; i++) {
+                const char = text[i];
+                const nextChar = text[i + 1];
+                if (char === "{" && nextChar === "{") {
+                    depth++;
+                    result += "{{";
+                    i++;
+                } else if (char === "}" && nextChar === "}") {
+                    depth--;
+                    result += "}}";
+                    i++;
+                    if (depth === 0) return result;
+                } else {
+                    result += char;
+                }
+            }
+            return result;
+        }
+
+        function mapPortugueseParams(ptParams) {
+            const mapped = {};
+            for (const [key, value] of Object.entries(ptParams)) {
+                mapped[PT_PARAM_MAPPING[key] || key] = value;
+            }
+            return mapped;
+        }
+
+        function normalizeValue(value) {
+            const trimmed = value.trim();
+            if (trimmed.match(/^[0-9a-fA-F]{6}$/)) {
+                return trimmed.toUpperCase();
+            }
+            return trimmed;
+        }
+
+        function createClubCard(clubName, jerseyData) {
+            const { de, en, pt } = jerseyData;
+            const hasDiscrepancies = detectDiscrepancies(de.params, en.params, pt.params);
+
+            const card = document.createElement("div");
+            card.className = "club-card";
+
+            const header = document.createElement("div");
+            header.className = "club-header";
+            header.addEventListener('click', () => card.classList.toggle("expanded"));
+
+            const headerContent = document.createElement("div");
+            headerContent.style.display = "flex";
+            headerContent.style.alignItems = "center";
+
+            const title = document.createElement("h3");
+            title.textContent = clubName;
+            headerContent.appendChild(title);
+
+            const status = document.createElement("span");
+            status.className = `club-status ${hasDiscrepancies ? "has-discrepancies" : "no-discrepancies"}`;
+            status.textContent = hasDiscrepancies ? t('discrepanciesFound') : t('noDiscrepancies');
+            headerContent.appendChild(status);
+
+            header.appendChild(headerContent);
+
+            const toggleIcon = document.createElement("span");
+            toggleIcon.className = "toggle-icon";
+            toggleIcon.textContent = "▼";
+            header.appendChild(toggleIcon);
+
+            const body = document.createElement("div");
+            body.className = "club-body";
+
+            const content = document.createElement("div");
+            content.className = "club-content";
+
+            const copyButtons = document.createElement("div");
+            copyButtons.className = "copy-buttons";
+
+            ["de", "en", "pt"].forEach(lang => {
+                const btn = document.createElement("button");
+                btn.className = "copy-btn";
+                btn.textContent = `📋 ${lang.toUpperCase()} ${t('copyBtn')}`;
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    copyKitCode(clubName, lang, btn);
+                });
+                copyButtons.appendChild(btn);
+            });
+
+            content.appendChild(copyButtons);
+            content.appendChild(createComparisonTable(de, en, pt));
+            body.appendChild(content);
+
+            card.appendChild(header);
+            card.appendChild(body);
+
+            return card;
+        }
+
+        function copyKitCode(clubName, lang, button) {
+            const data = clubDataStore[clubName];
+            if (!data) return;
+
+            const params = data[lang].params;
+            const lines = [];
+
+            PARAM_ORDER.forEach(param => {
+                let value = params[param] || "";
+
+                if (value.match(/^[0-9a-fA-F]{6}$/)) {
+                    value = value.toUpperCase();
+                }
+
+                const paramName = param.padEnd(25);
+                lines.push(`| ${paramName} = ${value}`);
+            });
+
+            const text = lines.join("\n");
+
+            navigator.clipboard.writeText(text).then(() => {
+                button.textContent = t('copied');
+                button.classList.add("copied");
+                setTimeout(() => {
+                    button.textContent = `📋 ${lang.toUpperCase()} ${t('copyBtn')}`;
+                    button.classList.remove("copied");
+                }, 2000);
+            }).catch(err => {
+                console.error("Copy failed:", err);
+                alert(t('copyFailed'));
+            });
+        }
+
+        function createComparisonTable(de, en, pt) {
+            const table = document.createElement("table");
+            table.className = "comparison-table";
+
+            const thead = document.createElement("thead");
+            const headerRow = document.createElement("tr");
+
+            const paramHeader = document.createElement("th");
+            paramHeader.textContent = t('parameter');
+            headerRow.appendChild(paramHeader);
+
+            const langs = [
+                { lang: "de", title: de.pageTitle },
+                { lang: "en", title: en.pageTitle },
+                { lang: "pt", title: pt.pageTitle }
+            ];
+
+            langs.forEach(({ lang, title }) => {
+                const th = document.createElement("th");
+                if (title) {
+                    const link = document.createElement("a");
+                    link.href = `https://${lang}.wikipedia.org/wiki/${encodeURIComponent(title.replace(/ /g, "_"))}`;
+                    link.target = "_blank";
+                    link.textContent = `${lang}.wikipedia.org`;
+                    th.appendChild(link);
+                } else {
+                    th.textContent = `${lang}.wikipedia.org`;
+                }
+                headerRow.appendChild(th);
+            });
+
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            const tbody = document.createElement("tbody");
+            const sets = [
+                { name: t('setHome'), params: PARAM_ORDER.slice(0, 10) },
+                { name: t('setAway'), params: PARAM_ORDER.slice(10, 20) },
+                { name: t('setThird'), params: PARAM_ORDER.slice(20, 30) }
+            ];
+
+            sets.forEach(set => {
+                const dividerRow = document.createElement("tr");
+                const dividerCell = document.createElement("td");
+                dividerCell.colSpan = 4;
+                dividerCell.className = "set-divider";
+                dividerCell.textContent = set.name;
+                dividerRow.appendChild(dividerCell);
+                tbody.appendChild(dividerRow);
+
+                set.params.forEach(param => {
+                    const row = document.createElement("tr");
+
+                    const paramCell = document.createElement("td");
+                    paramCell.className = "param-column";
+                    paramCell.textContent = param;
+                    row.appendChild(paramCell);
+
+                    const deValue = de.params[param] || "";
+                    const enValue = en.params[param] || "";
+                    const ptValue = pt.params[param] || "";
+
+                    const { deClass, enClass, ptClass } = compareValues(deValue, enValue, ptValue);
+
+                    [{ value: deValue, class: deClass }, { value: enValue, class: enClass }, { value: ptValue, class: ptClass }].forEach(item => {
+                        const cell = document.createElement("td");
+                        cell.className = `value-cell ${item.class}`;
+                        cell.textContent = item.value || t('empty');
+                        row.appendChild(cell);
+                    });
+
+                    tbody.appendChild(row);
+                });
+            });
+
+            table.appendChild(tbody);
+            return table;
+        }
+
+        function compareValues(deValue, enValue, ptValue) {
+            const de = normalizeValue(deValue);
+            const en = normalizeValue(enValue);
+            const pt = normalizeValue(ptValue);
+
+            if (!de && !en && !pt) {
+                return { deClass: "value-missing", enClass: "value-missing", ptClass: "value-missing" };
+            }
+
+            if (de === en && en === pt) {
+                return { deClass: "value-match", enClass: "value-match", ptClass: "value-match" };
+            }
+
+            return {
+                deClass: !de ? "value-missing" : "value-match",
+                enClass: !en ? "value-missing" : (en === de ? "value-match" : "value-mismatch"),
+                ptClass: !pt ? "value-missing" : (pt === de ? "value-match" : "value-mismatch")
+            };
+        }
+
+        function detectDiscrepancies(deParams, enParams, ptParams) {
+            return PARAM_ORDER.some(param => {
+                const de = normalizeValue(deParams[param] || "");
+                const en = normalizeValue(enParams[param] || "");
+                const pt = normalizeValue(ptParams[param] || "");
+                return de !== en || en !== pt || de !== pt;
+            });
+        }
+
+        function createErrorCard(clubName, errorMessage) {
+            const card = document.createElement("div");
+            card.className = "club-card";
+
+            const header = document.createElement("div");
+            header.className = "club-header";
+            header.style.background = "var(--color-error)";
+
+            const title = document.createElement("h3");
+            title.textContent = `${clubName} - ${t('errorPrefix').replace(': ', '')}`;
+            header.appendChild(title);
+
+            const body = document.createElement("div");
+            body.className = "club-body";
+            body.style.maxHeight = "none";
+
+            const content = document.createElement("div");
+            content.className = "club-content";
+
+            const errorDiv = document.createElement("div");
+            errorDiv.className = "error-message";
+            errorDiv.textContent = `${t('errorPrefix')}${errorMessage}`;
+            content.appendChild(errorDiv);
+
+            body.appendChild(content);
+            card.appendChild(header);
+            card.appendChild(body);
+
+            return card;
+        }
+
+        function updateProgress(percent, message) {
+            document.getElementById("progressBar").style.width = `${percent}%`;
+            document.getElementById("progressPercent").textContent = `${Math.round(percent)}%`;
+            document.getElementById("progressText").textContent = message;
+        }
+
+        function hideProgress() {
+            document.getElementById("progressSection").classList.remove("active");
+        }
+
+        function showResults() {
+            document.getElementById("resultsSection").classList.add("active");
+        }
+
+        function showError(message) {
+            const resultsSection = document.getElementById("resultsSection");
+            resultsSection.innerHTML = `<div class="error-message">${message}</div>`;
+            resultsSection.classList.add("active");
+        }
+
+        function resetTool() {
+            document.getElementById("leagueUrl").value = "";
+            document.getElementById("clubUrls").value = "";
+            document.getElementById("clubNames").value = "";
+            document.getElementById("resultsSection").innerHTML = "";
+            document.getElementById("resultsSection").classList.remove("active");
+            document.getElementById("legendSection").style.display = "none";
+            hideProgress();
+            allClubs = [];
+            clubDataStore = {};
+            currentProcessing = false;
+            document.getElementById("startBtn").disabled = false;
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+    </script>
+</body>
+</html>
